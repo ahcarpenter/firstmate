@@ -1,0 +1,60 @@
+=== ask: add interview metrics to the candidate page
+best-practices-intake: off (TYPESAFE_API_KEY absent from the environment and $REPO/.env)
+best-practices-intake:
+  status: off
+  repository: addyosmani/agent-skills
+  reason: TYPESAFE_API_KEY absent from the environment and $REPO/.env
+  row: tier = tier-2 (fallback)
+  row: idea = false (fallback)
+  reference: $REPO/.agents/skills/best-practices-adapters/references/addyosmani/agent-skills/intake-question.md
+[rc=0]
+=== ask: update the grill menu page
+best-practices-intake: off (TYPESAFE_API_KEY absent from the environment and $REPO/.env)
+best-practices-intake:
+  status: off
+  repository: addyosmani/agent-skills
+  reason: TYPESAFE_API_KEY absent from the environment and $REPO/.env
+  row: tier = tier-2 (fallback)
+  row: idea = false (fallback)
+  reference: $REPO/.agents/skills/best-practices-adapters/references/addyosmani/agent-skills/intake-question.md
+[rc=0]
+=== ask: interview me before you build the candidate page
+best-practices-intake: off (TYPESAFE_API_KEY absent from the environment and $REPO/.env)
+best-practices-intake:
+  status: off
+  repository: addyosmani/agent-skills
+  reason: TYPESAFE_API_KEY absent from the environment and $REPO/.env
+  row: tier = tier-4 (words "interview me")
+  row: idea = false (fallback)
+  reference: $REPO/.agents/skills/best-practices-adapters/references/addyosmani/agent-skills/intake-question.md
+[rc=0]
+=== ask: grill me about this plan
+best-practices-intake: off (TYPESAFE_API_KEY absent from the environment and $REPO/.env)
+best-practices-intake:
+  status: off
+  repository: addyosmani/agent-skills
+  reason: TYPESAFE_API_KEY absent from the environment and $REPO/.env
+  row: tier = tier-4 (words "grill me")
+  row: idea = false (fallback)
+  reference: $REPO/.agents/skills/best-practices-adapters/references/addyosmani/agent-skills/intake-question.md
+[rc=0]
+=== ask: Interview Me, please
+best-practices-intake: off (TYPESAFE_API_KEY absent from the environment and $REPO/.env)
+best-practices-intake:
+  status: off
+  repository: addyosmani/agent-skills
+  reason: TYPESAFE_API_KEY absent from the environment and $REPO/.env
+  row: tier = tier-4 (words "interview me")
+  row: idea = false (fallback)
+  reference: $REPO/.agents/skills/best-practices-adapters/references/addyosmani/agent-skills/intake-question.md
+[rc=0]
+=== ask: build the thing, interview-me style
+best-practices-intake: off (TYPESAFE_API_KEY absent from the environment and $REPO/.env)
+best-practices-intake:
+  status: off
+  repository: addyosmani/agent-skills
+  reason: TYPESAFE_API_KEY absent from the environment and $REPO/.env
+  row: tier = tier-2 (fallback)
+  row: idea = false (fallback)
+  reference: $REPO/.agents/skills/best-practices-adapters/references/addyosmani/agent-skills/intake-question.md
+[rc=0]

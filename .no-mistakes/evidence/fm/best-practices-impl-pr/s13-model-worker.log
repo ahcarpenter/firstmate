@@ -1,0 +1,14 @@
+I've added the README and committed it on `fm/bp-model` as 7909091. I've also appended the `done` line to the status file.
+
+**The one-line description is a placeholder.** The repo has only the `init` commit, which contains no files, so there was nothing to infer a description from. `README.md` says: `demo: a placeholder project with no source files yet.` Replace it once the repo has real content.
+
+- **Isolation:** `pwd -P` and `git rev-parse --show-toplevel` both resolved to the task worktree.
+- **Branch:** `fm/bp-model` already existed, so `git checkout -b` failed. I was already on that branch, so I used it.
+- **Diff:** one new file, one line, nothing else changed. The worktree is clean, and I didn't push or open a PR.
+- **Checks:** the repo has no test, lint, type or build commands to run. I checked the diff by hand.
+- **`CONSTRAINTS.md`:** none was present. I applied the diff-hygiene rules instead, and a constraints file would be a sensible follow-up.
+- **Not run:** doubt-driven review, cross-model review, and the simplification pass. A one-line file gave them nothing to act on.
+- **Best-practices pack:** `FM_BEST_PRACTICES_VERSION` read `0.6.14`, not `missing` or `unreviewed`. I didn't load or invoke any agent-skills skills. I followed the pack's practice section directly because the change was trivial.
+- **Follow-ups:** the README line needs real content, and a `CONSTRAINTS.md` should be added.
+[rc=0]
+DONE

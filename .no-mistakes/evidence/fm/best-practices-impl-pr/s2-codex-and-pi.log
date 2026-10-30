@@ -1,0 +1,114 @@
+$ codex --version
+codex-cli 0.164.0
+[rc=0]
+$ bin/fm-best-practices.sh version addyosmani/agent-skills --harness codex --project $S/proj
+missing: not installed; no Codex configuration at $S/codex/config.toml
+[rc=0]
+$ codex plugin marketplace add addyosmani/agent-skills
+Added marketplace `agent-skills` from https://github.com/addyosmani/agent-skills.git.
+Installed marketplace root: $S/codex/.tmp/marketplaces/agent-skills
+[rc=0]
+$ codex plugin add agent-skills@agent-skills
+Added plugin `agent-skills` from marketplace `agent-skills`.
+Installed plugin root: $S/codex/plugins/cache/agent-skills/agent-skills/0.6.14
+[rc=0]
+$ bin/fm-best-practices.sh check addyosmani/agent-skills --harness codex --project $S/proj
+best-practices-check:
+  repository: addyosmani/agent-skills
+  harness: codex
+  project: $S/proj
+  status: ok
+  found: agent-skills@agent-skills is enabled in $S/codex/config.toml, version 0.6.14
+[rc=0]
+$ bin/fm-best-practices.sh version addyosmani/agent-skills --harness codex --project $S/proj
+0.6.14
+[rc=0]
+--- pi / pi-signed: must be read-unproven, never "ships no install path"
+$ bin/fm-best-practices.sh check addyosmani/agent-skills --harness pi --project $S/proj
+best-practices-check:
+  repository: addyosmani/agent-skills
+  harness: pi
+  project: $S/proj
+  status: problem
+  problem: read-unproven
+  found: no read is implemented for pi
+  remedy: firstmate's read of pi is not yet proven live (the pack documents pi install git:github.com/addyosmani/agent-skills, covering pi and pi-signed; firstmate has no read of that install yet, so it is not yet proven live), so the adapter cannot confirm the pack; harnesses with a proven read: claude, codex, omp, agy, gemini, commandcode, opencode, cursor
+[rc=1]
+$ bin/fm-best-practices.sh version addyosmani/agent-skills --harness pi --project $S/proj
+missing: firstmate's read of pi is not yet proven live, so the pack cannot be confirmed loaded
+[rc=0]
+$ bin/fm-best-practices.sh read addyosmani/agent-skills --harness pi --project $S/proj
+{
+  "installed": false,
+  "enabled": false,
+  "enabled_source": null,
+  "label": null,
+  "id": null,
+  "where": "no read is implemented for pi",
+  "copy": null,
+  "repository": "addyosmani/agent-skills",
+  "harness": "pi",
+  "supported": true,
+  "shape": "plugin",
+  "read": null,
+  "proof": "unproven",
+  "proof_reason": "the pack documents pi install git:github.com/addyosmani/agent-skills, covering pi and pi-signed; firstmate has no read of that install yet, so it is not yet proven live",
+  "supported_versions": [
+    "0.6.14"
+  ],
+  "fingerprint": null,
+  "version": null,
+  "version_supported": false
+}
+[rc=0]
+$ bin/fm-best-practices.sh check addyosmani/agent-skills --harness pi-signed --project $S/proj
+best-practices-check:
+  repository: addyosmani/agent-skills
+  harness: pi-signed
+  project: $S/proj
+  status: problem
+  problem: read-unproven
+  found: no read is implemented for pi-signed
+  remedy: firstmate's read of pi-signed is not yet proven live (the pack documents pi install git:github.com/addyosmani/agent-skills, covering pi and pi-signed; firstmate has no read of that install yet, so it is not yet proven live), so the adapter cannot confirm the pack; harnesses with a proven read: claude, codex, omp, agy, gemini, commandcode, opencode, cursor
+[rc=1]
+$ bin/fm-best-practices.sh version addyosmani/agent-skills --harness pi-signed --project $S/proj
+missing: firstmate's read of pi-signed is not yet proven live, so the pack cannot be confirmed loaded
+[rc=0]
+$ bin/fm-best-practices.sh read addyosmani/agent-skills --harness pi-signed --project $S/proj
+{
+  "installed": false,
+  "enabled": false,
+  "enabled_source": null,
+  "label": null,
+  "id": null,
+  "where": "no read is implemented for pi-signed",
+  "copy": null,
+  "repository": "addyosmani/agent-skills",
+  "harness": "pi-signed",
+  "supported": true,
+  "shape": "plugin",
+  "read": null,
+  "proof": "unproven",
+  "proof_reason": "the pack documents pi install git:github.com/addyosmani/agent-skills, covering pi and pi-signed; firstmate has no read of that install yet, so it is not yet proven live",
+  "supported_versions": [
+    "0.6.14"
+  ],
+  "fingerprint": null,
+  "version": null,
+  "version_supported": false
+}
+[rc=0]
+--- harness outside the list
+$ bin/fm-best-practices.sh check addyosmani/agent-skills --harness amp --project $S/proj
+best-practices-check:
+  repository: addyosmani/agent-skills
+  harness: amp
+  project: $S/proj
+  status: problem
+  problem: runtime-unsupported
+  found: firstmate has not verified amp
+  remedy: the crew runtime amp is not one both firstmate and the pack support; the harnesses both support are agy, claude, codex, commandcode, cursor, gemini, omp, opencode, pi, pi-signed; dispatch this project on one of them or drop the token
+[rc=1]
+$ bin/fm-best-practices.sh version addyosmani/agent-skills --harness amp --project $S/proj
+missing: firstmate has not verified amp; the pack has no install path firstmate can read for amp
+[rc=0]

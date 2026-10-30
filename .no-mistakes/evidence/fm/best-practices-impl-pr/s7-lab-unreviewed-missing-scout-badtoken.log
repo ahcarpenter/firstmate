@@ -1,0 +1,29 @@
+## unreviewed launch: a depended-on skill edited in the real install
+scaffolded: $LAB/data/bp-unrev/brief.md (ship, mode=local-only best-practices=addyosmani/agent-skills; replace {TASK} and {FIRSTMATE_SPEC})
+fm-gate-refuse: gate agent lifecycle permitted only against lab home $LAB
+spawned bp-unrev harness=claude kind=ship mode=local-only yolo=off window=primary:fm-bp-unrev worktree=~/.treehouse/demo-d06160/2/demo
+[rc=0]
+## missing launch: plugin disabled through the real CLI
+✔ Successfully disabled plugin: agent-skills (scope: user)
+scaffolded: $LAB/data/bp-miss/brief.md (ship, mode=local-only best-practices=addyosmani/agent-skills; replace {TASK} and {FIRSTMATE_SPEC})
+fm-gate-refuse: gate agent lifecycle permitted only against lab home $LAB
+notice: bp-miss launches with FM_BEST_PRACTICES_VERSION=missing for addyosmani/agent-skills on claude (installed but not enabled; agent-skills@addy-agent-skills is disabled by enabledPlugins in $S/claude/settings.json); the worker follows firstmate's defaults and says so in its done summary
+spawned bp-miss harness=claude kind=ship mode=local-only yolo=off window=primary:fm-bp-miss worktree=~/.treehouse/demo-d06160/3/demo
+[rc=0]
+✔ Successfully enabled plugin: agent-skills (scope: user)
+## scout launch
+scaffolded: $LAB/data/bp-scout/brief.md (scout best-practices=addyosmani/agent-skills; replace {TASK} and {FIRSTMATE_SPEC})
+fm-gate-refuse: gate agent lifecycle permitted only against lab home $LAB
+spawned bp-scout harness=claude kind=scout window=primary:fm-bp-scout worktree=~/.treehouse/demo-d06160/4/demo
+[rc=0]
+## registry token that does not resolve
+refused: unknown best-practices pack "obra/superpowers" registered for demo in $LAB/data/projects.md; this firstmate carries adapters for: addyosmani/agent-skills; correct the registry entry or drop the token
+[rc=3]
+scaffolded: $LAB/data/bp-bad/brief.md (ship, mode=local-only; replace {TASK} and {FIRSTMATE_SPEC})
+fm-gate-refuse: gate agent lifecycle permitted only against lab home $LAB
+refused: unknown best-practices pack "obra/superpowers" registered for demo in $LAB/data/projects.md; this firstmate carries adapters for: addyosmani/agent-skills; correct the registry entry or drop the token
+error: bp-bad cannot launch: the best-practices token registered for demo does not resolve (see the refusal above); correct data/projects.md and spawn again
+[rc=1]
+refused: malformed best-practices binding "best-practices=not-a-repo" registered for demo in $LAB/data/projects.md; the value is the pack's repository as <owner>/<repo>, such as best-practices=addyosmani/agent-skills; correct the registry entry
+[rc=3]
+DONE

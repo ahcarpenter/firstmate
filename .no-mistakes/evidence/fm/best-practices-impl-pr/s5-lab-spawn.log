@@ -1,0 +1,22 @@
+## 1 brief without the token -> spawn must refuse
+scaffolded: $LAB/data/bp-mismatch/brief.md (ship, mode=local-only; replace {TASK} and {FIRSTMATE_SPEC})
+fm-gate-refuse: gate agent lifecycle permitted only against lab home $LAB
+error: best-practices mismatch for bp-mismatch: demo is registered best-practices=addyosmani/agent-skills but $LAB/data/bp-mismatch/brief.md records best-practices=none; keep the filled ## Captain's intent and ## Firstmate spec bodies, remove the brief, re-scaffold it with fm-brief.sh bp-mismatch demo --mode local-only --best-practices addyosmani/agent-skills (plus this task's other flags), then re-fill those two subsections
+[rc=1]
+state files: 0
+## 2 ship brief with the token -> spawn launches
+scaffolded: $LAB/data/bp-ship/brief.md (ship, mode=local-only best-practices=addyosmani/agent-skills; replace {TASK} and {FIRSTMATE_SPEC})
+fm-gate-refuse: gate agent lifecycle permitted only against lab home $LAB
+spawned bp-ship harness=claude kind=ship mode=local-only yolo=off window=primary:fm-bp-ship worktree=~/.treehouse/demo-d06160/1/demo
+[rc=0]
+## 3 token-free project with a token brief -> refuse
+scaffolded: $LAB/data/bp-extra/brief.md (ship, mode=local-only best-practices=addyosmani/agent-skills; replace {TASK} and {FIRSTMATE_SPEC})
+fm-gate-refuse: gate agent lifecycle permitted only against lab home $LAB
+error: best-practices mismatch for bp-extra: plain is registered best-practices=none but $LAB/data/bp-extra/brief.md records best-practices=addyosmani/agent-skills; keep the filled ## Captain's intent and ## Firstmate spec bodies, remove the brief, re-scaffold it with fm-brief.sh bp-extra plain --mode local-only (plus this task's other flags), then re-fill those two subsections
+[rc=1]
+## 4 token-free project, no token -> launches, no exports
+scaffolded: $LAB/data/bp-plain/brief.md (ship, mode=local-only; replace {TASK} and {FIRSTMATE_SPEC})
+fm-gate-refuse: gate agent lifecycle permitted only against lab home $LAB
+spawned bp-plain harness=claude kind=ship mode=local-only yolo=off window=primary:fm-bp-plain worktree=~/.treehouse/plain-e81189/1/plain
+[rc=0]
+DONE

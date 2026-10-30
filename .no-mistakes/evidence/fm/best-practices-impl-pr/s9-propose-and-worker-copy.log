@@ -1,0 +1,51 @@
+## propose: machine-only install, nothing committed
+$ bin/fm-best-practices.sh propose $S/committed
+best-practices-propose:
+  project: $S/committed
+  propose: none
+  carried: addyosmani/agent-skills
+Installing plugin "agent-skills@addy-agent-skills"...✔ Successfully installed plugin: agent-skills@addy-agent-skills (scope: project)
+{
+  "enabledPlugins": {
+    "agent-skills@addy-agent-skills": true
+  }
+}
+## propose: committed project setting
+$ bin/fm-best-practices.sh propose $S/committed
+best-practices-propose:
+  project: $S/committed
+  propose: best-practices=addyosmani/agent-skills (claude: agent-skills@addy-agent-skills is enabled by enabledPlugins in the project's committed .claude/settings.json)
+✔ Successfully disabled plugin: agent-skills (scope: user)
+## worker copy of the clone, user scope disabled: project commit still enables
+$ bin/fm-best-practices.sh read addyosmani/agent-skills --harness claude --project $S/copy
+{
+  "installed": true,
+  "enabled": true,
+  "enabled_source": "project",
+  "label": "0.6.14",
+  "id": "agent-skills@addy-agent-skills",
+  "where": "agent-skills@addy-agent-skills is enabled by enabledPlugins in the project's committed .claude/settings.json",
+  "copy": {
+    "dir": "$S/claude/plugins/cache/addy-agent-skills/agent-skills/0.6.14",
+    "layout": "plugin"
+  },
+  "repository": "addyosmani/agent-skills",
+  "harness": "claude",
+  "supported": true,
+  "shape": "plugin",
+  "read": "claude-plugin",
+  "proof": "proven",
+  "proof_reason": null,
+  "supported_versions": [
+    "0.6.14"
+  ],
+  "fingerprint": {
+    "status": "match",
+    "tag": "0.6.14"
+  },
+  "version": "0.6.14",
+  "version_supported": true
+}
+$ bin/fm-best-practices.sh version addyosmani/agent-skills --harness claude --project $S/copy
+0.6.14
+✔ Successfully enabled plugin: agent-skills (scope: user)

@@ -1,0 +1,21 @@
+=== fm-bp-ship
+38936 34071 -zsh
+39066 38936 treehouse get
+39179 39066 /bin/zsh -i -l
+42363 39179 claude --dangerously-skip-permissions --add-dir $LAB-path
+worker claude pid=42363 env:
+FM_TASK_ID=bp-ship
+FM_BEST_PRACTICES=addyosmani/agent-skills
+FM_BEST_PRACTICES_VERSION=0.6.14
+CLAUDE_CONFIG_DIR=$S/claude
+=== fm-bp-plain
+44556 34071 -zsh
+44605 44556 treehouse get
+44648 44605 /bin/zsh -i -l
+46275 44648 claude --dangerously-skip-permissions --add-dir $LAB-path
+worker claude pid=46275 env:
+FM_TASK_ID=bp-plain
+CLAUDE_CONFIG_DIR=$S/claude
+fm-bp-unrev2: FM_BEST_PRACTICES=addyosmani/agent-skills FM_BEST_PRACTICES_VERSION=unreviewed 
+fm-bp-miss: FM_BEST_PRACTICES=addyosmani/agent-skills FM_BEST_PRACTICES_VERSION=missing 
+fm-bp-scout: FM_BEST_PRACTICES=addyosmani/agent-skills FM_BEST_PRACTICES_VERSION=0.6.14 

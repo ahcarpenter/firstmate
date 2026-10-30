@@ -1,0 +1,7 @@
+## unreviewed launch on a depended-on skill
+scaffolded: $LAB/data/bp-unrev2/brief.md (ship, mode=local-only best-practices=addyosmani/agent-skills; replace {TASK} and {FIRSTMATE_SPEC})
+fm-gate-refuse: gate agent lifecycle permitted only against lab home $LAB
+notice: bp-unrev2 launches with FM_BEST_PRACTICES_VERSION=unreviewed for addyosmani/agent-skills on claude: code-review-and-quality differs from the reviewed 0.6.14 text (runtime label 0.6.14); the adapter still applies and the worker names these skills in its done summary
+spawned bp-unrev2 harness=claude kind=ship mode=local-only yolo=off window=primary:fm-bp-unrev2 worktree=~/.treehouse/demo-d06160/5/demo
+[rc=0]
+DONE

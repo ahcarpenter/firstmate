@@ -1,0 +1,56 @@
+$ manifest-check (shipped)
+manifest-check: ok
+[rc=0]
+=== flow moves report off last
+addyosmani/agent-skills: flow must list start, work, verify, deliver, report, and each worker insert exactly once
+addyosmani/agent-skills: flow must keep report last; nothing runs after the done report
+addyosmani/agent-skills: the router skill's routing object disagrees with addyosmani/agent-skills's manifest; it should read {"manifest":"references/addyosmani/agent-skills/manifest.json","facets":{"intake.question":{"ac
+
+[rc=]
+=== flow moves start off first
+addyosmani/agent-skills: flow must list start, work, verify, deliver, report, and each worker insert exactly once
+addyosmani/agent-skills: flow must keep start first; nothing runs before the isolation check
+addyosmani/agent-skills: the router skill's routing object disagrees with addyosmani/agent-skills's manifest; it should read {"manifest":"references/addyosmani/agent-skills/manifest.json","facets":{"intake.question":{"ac
+
+[rc=]
+=== step before start
+addyosmani/agent-skills: flow must keep start first; nothing runs before the isolation check
+addyosmani/agent-skills: the router skill's routing object disagrees with addyosmani/agent-skills's manifest; it should read {"manifest":"references/addyosmani/agent-skills/manifest.json","facets":{"intake.question":{"ac
+
+[rc=]
+=== unknown facet (merge)
+addyosmani/agent-skills: facet merge is outside the eleven flow positions
+addyosmani/agent-skills: the router skill's routing object disagrees with addyosmani/agent-skills's manifest; it should read {"manifest":"references/addyosmani/agent-skills/manifest.json","facets":{"intake.question":{"ac
+
+[rc=]
+=== launch.env adds
+manifest-check: ok
+[rc=]
+=== replace at start
+addyosmani/agent-skills: facet start cannot be replaced or paired: the isolation check stays first and the done report stays last
+addyosmani/agent-skills: facet start needs a reference
+addyosmani/agent-skills: facet start kinds must list ship, scout, or both
+addyosmani/agent-skills: the router skill's routing object disagrees with addyosmani/agent-skills's manifest; it should read {"manifest":"references/addyosmani/agent-skills/manifest.json","facets":{"intake.question":{"ac
+
+[rc=]
+=== supported version not a tag
+addyosmani/agent-skills: the manifest could not be checked: jq: error (at $S/rootcopy/.agents/skills/best-practices-adapters/references/addyosmani/a
+
+[rc=]
+=== router disagrees (action flip on first facet)
+addyosmani/agent-skills: the router skill's routing object disagrees with addyosmani/agent-skills's manifest; it should read {"manifest":"references/addyosmani/agent-skills/manifest.json","facets":{"intake.question":{"ac
+
+[rc=]
+=== launch.env carries a reference (a way to add)
+addyosmani/agent-skills: launch.env only extends, with the two exports firstmate writes; an adapter adds no switches
+
+[exit ]
+=== launch.env replaced
+addyosmani/agent-skills: launch.env only extends, with the two exports firstmate writes; an adapter adds no switches
+
+[exit ]
+=== version that is not a tag
+addyosmani/agent-skills: version main is not a release tag; the supported list carries tags only
+addyosmani/agent-skills: fingerprints.tags must hold exactly the supported tags; regenerate with bin/fm-best-practices.sh fingerprints addyosmani/agent-skills --write
+
+[exit ]

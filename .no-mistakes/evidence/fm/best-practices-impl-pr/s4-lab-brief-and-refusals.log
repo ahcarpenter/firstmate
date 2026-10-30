@@ -1,0 +1,18 @@
+## 1 brief without the token, spawn must refuse
+error: --yolo is not a brief input; pass it to bin/fm-spawn.sh, which records the task's merge posture
+Traceback (most recent call last):
+  File "<stdin>", line 2, in <module>
+FileNotFoundError: [Errno 2] No such file or directory: '$LAB/data/bp-mismatch/brief.md'
+error: refusing fleet lifecycle from inside a no-mistakes gate worktree (~/.no-mistakes/repos/4d12af90a03c.git)
+[rc=3]
+## 2 unknown pack at brief
+error: --best-practices names 'obra/superpowers', which this firstmate carries no adapter for; it carries: addyosmani/agent-skills, or pass none
+[rc=1]
+## 3 ship brief with the token
+error: --yolo is not a brief input; pass it to bin/fm-spawn.sh, which records the task's merge posture
+Traceback (most recent call last):
+  File "<stdin>", line 2, in <module>
+FileNotFoundError: [Errno 2] No such file or directory: '$LAB/data/bp-ship/brief.md'
+## 4 scout brief with the token
+scaffolded: $LAB/data/bp-scout/brief.md (scout best-practices=addyosmani/agent-skills; replace {TASK} and {FIRSTMATE_SPEC})
+DONE

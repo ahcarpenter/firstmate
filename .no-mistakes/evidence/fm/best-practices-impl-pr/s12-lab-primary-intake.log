@@ -1,0 +1,14 @@
+Captain, the brief for task `bp-model` is filled and ready. I did not run `bin/fm-spawn.sh` or start the watcher, as instructed.
+
+- **Posture:** the registry has `demo` as `local-only`, with yolo off, the default `fm/` branch prefix, and the `addyosmani/agent-skills` best-practices pack. I used `local-only` and passed the pack through. You'll need to approve the landing.
+- **Intake:** the ask is clear and reversible, so I took the no-question path. The intake router was off because `TYPESAFE_API_KEY` is absent in this lab, and it fell back to asking one question. I skipped that question because nothing was ambiguous.
+- **Brief:** the intent is your sentence unchanged. The spec says to add one root `README.md` with one line describing the project, drawn from the repo's contents, and to change nothing else.
+- **Checks:** no `{TASK}` or `{FIRSTMATE_SPEC}` placeholders remain. The brief includes the best-practices section. The `route` command ran, but it is also off here for the same missing key, so its fallback answers were used.
+
+Command run:
+
+```
+bin/fm-brief.sh bp-model demo --mode local-only --best-practices addyosmani/agent-skills
+```
+[rc=0]
+DONE

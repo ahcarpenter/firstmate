@@ -1,0 +1,35 @@
+before: security-and-hardening lines=1 rollback=1
+=== confident answers
+best-practices-route:
+  status: routed
+  repository: addyosmani/agent-skills
+  model: local   latency_ms: 0   tokens: 1/1
+  row: bug-fix = true (routed p=0.97)
+  row: trivial = false (routed p=0.03)
+  row: security = false (routed p=0.03)
+  row: performance = false (routed p=0.03)
+  row: api = false (routed p=0.03)
+  row: observability = false (routed p=0.03)
+  row: deprecation = false (routed p=0.03)
+  row: frontend = true (fallback: p=0.55 is inside the 0.6 floor)
+  row: browser = false (routed p=0.03)
+  row: ci-cd = false (routed p=0.03)
+  row: refactor = false (routed p=0.03)
+  row: source-driven = false (routed p=0.03)
+  row: source-citations = false (routed p=0.03)
+  row: risky = false (routed p=0.03)
+  row: doubt = false (fact mode=local-only)
+  section: recomposed in $S/route2.md
+after: security-and-hardening lines=0 rollback=0 reproduce-step=1 frontend(unconfident kept)=1
+brief outside practice section: unchanged
+request path: /v1/systemone; questions: 14; state.task carries boilerplate: 0
+second route: idempotent
+=== provider returns 500
+  status: error
+  section: recomposed in $S/route2.md
+security lines after error: 1
+=== never-send match
+best-practices-route: off (brief text matches /private$LAB/config/dispatch-never-send line 1; nothing sent)
+  status: off
+  reason: brief text matches /private$LAB/config/dispatch-never-send line 1; nothing sent
+request reached server: no

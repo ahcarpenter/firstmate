@@ -1,0 +1,145 @@
+$ ~/.local/bin/claude --version
+2.1.314 (Claude Code)
+[rc=0]
+--- before install
+$ $REPO/bin/fm-best-practices.sh check addyosmani/agent-skills --harness claude --project $S/proj
+best-practices-check:
+  repository: addyosmani/agent-skills
+  harness: claude
+  project: $S/proj
+  status: problem
+  problem: not-installed
+  found: no plugin registry at $S/claude/plugins/installed_plugins.json
+  remedy: install it: claude plugin marketplace add addyosmani/agent-skills, then claude plugin install agent-skills@addy-agent-skills
+[rc=1]
+$ $REPO/bin/fm-best-practices.sh version addyosmani/agent-skills --harness claude --project $S/proj
+missing: not installed; no plugin registry at $S/claude/plugins/installed_plugins.json
+[rc=0]
+--- install
+$ ~/.local/bin/claude plugin marketplace add addyosmani/agent-skills
+Adding marketplace…Cloning via SSH: git@github.com:addyosmani/agent-skills.git
+Refreshing marketplace cache (timeout: 120s)…
+Cloning repository (timeout: 120s): git@github.com:addyosmani/agent-skills.git
+Clone complete, validating marketplace…
+Cleaning up old marketplace cache…
+✔ Successfully added marketplace: addy-agent-skills (declared in user settings)
+[rc=0]
+$ ~/.local/bin/claude plugin install agent-skills@addy-agent-skills
+Installing plugin "agent-skills@addy-agent-skills"...✔ Successfully installed plugin: agent-skills@addy-agent-skills (scope: user)
+[rc=0]
+$ ~/.local/bin/claude plugin list --json
+[
+  {
+    "id": "agent-skills@addy-agent-skills",
+    "version": "0.6.14",
+    "scope": "user",
+    "enabled": true,
+    "installPath": "$S/claude/plugins/cache/addy-agent-skills/agent-skills/0.6.14",
+    "installedAt": "2026-10-30T08:23:17.185Z",
+    "lastUpdated": "2026-10-30T08:23:17.185Z",
+    "projectEnabled": false
+  },
+  {
+    "id": "moshi-hook@inline",
+    "version": "1.0.0",
+    "scope": "session",
+    "enabled": true,
+    "installPath": "~/.claude/moshi-plugin"
+  },
+  {
+    "id": "(suppressed)@skills-dir",
+    "version": "unknown",
+    "scope": "project",
+    "enabled": false,
+    "installPath": "",
+    "notes": [
+      "1 project-scope directory under ./.claude/skills/ that may load as a plugin was skipped because this workspace was not trusted when plugins were scanned. After accepting the trust dialog, run /reload-plugins (or relaunch) to load what qualifies."
+    ],
+    "noteDetails": [
+      {
+        "type": "project-scope-suppressed-untrusted"
+      }
+    ]
+  }
+]
+[rc=0]
+--- after install
+$ $REPO/bin/fm-best-practices.sh read addyosmani/agent-skills --harness claude --project $S/proj
+{
+  "installed": true,
+  "enabled": true,
+  "enabled_source": "user",
+  "label": "0.6.14",
+  "id": "agent-skills@addy-agent-skills",
+  "where": "agent-skills@addy-agent-skills is enabled by enabledPlugins in $S/claude/settings.json",
+  "copy": {
+    "dir": "$S/claude/plugins/cache/addy-agent-skills/agent-skills/0.6.14",
+    "layout": "plugin"
+  },
+  "repository": "addyosmani/agent-skills",
+  "harness": "claude",
+  "supported": true,
+  "shape": "plugin",
+  "read": "claude-plugin",
+  "proof": "proven",
+  "proof_reason": null,
+  "supported_versions": [
+    "0.6.14"
+  ],
+  "fingerprint": {
+    "status": "match",
+    "tag": "0.6.14"
+  },
+  "version": "0.6.14",
+  "version_supported": true
+}
+[rc=0]
+$ $REPO/bin/fm-best-practices.sh check addyosmani/agent-skills --harness claude --project $S/proj
+best-practices-check:
+  repository: addyosmani/agent-skills
+  harness: claude
+  project: $S/proj
+  status: ok
+  found: agent-skills@addy-agent-skills is enabled by enabledPlugins in $S/claude/settings.json, version 0.6.14
+[rc=0]
+$ $REPO/bin/fm-best-practices.sh version addyosmani/agent-skills --harness claude --project $S/proj
+0.6.14
+[rc=0]
+--- disabled
+$ ~/.local/bin/claude plugin disable agent-skills@addy-agent-skills
+✔ Successfully disabled plugin: agent-skills (scope: user)
+[rc=0]
+$ $REPO/bin/fm-best-practices.sh check addyosmani/agent-skills --harness claude --project $S/proj
+best-practices-check:
+  repository: addyosmani/agent-skills
+  harness: claude
+  project: $S/proj
+  status: problem
+  problem: not-enabled
+  found: agent-skills@addy-agent-skills is disabled by enabledPlugins in $S/claude/settings.json
+  remedy: enable it where it is disabled: claude plugin enable agent-skills@addy-agent-skills --scope user
+[rc=1]
+$ $REPO/bin/fm-best-practices.sh version addyosmani/agent-skills --harness claude --project $S/proj
+missing: installed but not enabled; agent-skills@addy-agent-skills is disabled by enabledPlugins in $S/claude/settings.json
+[rc=0]
+$ ~/.local/bin/claude plugin enable agent-skills@addy-agent-skills
+✔ Successfully enabled plugin: agent-skills (scope: user)
+[rc=0]
+--- locally edited (unreviewed)
+edit: $S/claude/plugins/cache/addy-agent-skills/agent-skills/0.6.14/skills/observability-and-instrumentation/SKILL.md
+$ $REPO/bin/fm-best-practices.sh check addyosmani/agent-skills --harness claude --project $S/proj
+best-practices-check:
+  repository: addyosmani/agent-skills
+  harness: claude
+  project: $S/proj
+  status: unreviewed
+  found: agent-skills@addy-agent-skills is enabled by enabledPlugins in $S/claude/settings.json
+  unreviewed: observability-and-instrumentation differs from the reviewed 0.6.14 text (runtime label 0.6.14)
+  supported: 0.6.14
+[rc=0]
+$ $REPO/bin/fm-best-practices.sh version addyosmani/agent-skills --harness claude --project $S/proj
+unreviewed: observability-and-instrumentation differs from the reviewed 0.6.14 text (runtime label 0.6.14)
+[rc=0]
+$ $REPO/bin/fm-best-practices.sh version addyosmani/agent-skills --harness claude --project $S/proj
+0.6.14
+[rc=0]
