@@ -1,0 +1,31 @@
+# jq used: 1.8.1 = jq-1.8.1, system = jq-1.7.1-apple; real /usr/bin/curl over TLS to local stub via CURL_HOME
+prefix-jq1.8.1 valid                  exit=0 status: error reason: response is not a rule Choice answer  | 
+fixed-jq1.8.1  valid                  exit=0 status: clear  | profile: --harness 'cursor' --model 'cursor-grok-4.6-medium'
+fixed-jq1.7.1  valid                  exit=0 status: clear  | profile: --harness 'cursor' --model 'cursor-grok-4.6-medium'
+prefix-jq1.8.1 valid-extra-answer     exit=0 status: error reason: response is not a rule Choice answer  | 
+fixed-jq1.8.1  valid-extra-answer     exit=0 status: clear  | profile: --harness 'cursor' --model 'cursor-grok-4.6-medium'
+fixed-jq1.7.1  valid-extra-answer     exit=0 status: clear  | profile: --harness 'cursor' --model 'cursor-grok-4.6-medium'
+fixed-jq1.8.1  bad-refusal            exit=0 status: error reason: response is not a rule Choice answer  | 
+fixed-jq1.7.1  bad-refusal            exit=0 status: error reason: response is not a rule Choice answer  | 
+fixed-jq1.8.1  bad-answers-object     exit=0 status: error reason: response is not a rule Choice answer  | 
+fixed-jq1.7.1  bad-answers-object     exit=0 status: error reason: response is not a rule Choice answer  | 
+fixed-jq1.8.1  bad-no-rule            exit=0 status: error reason: response is not a rule Choice answer  | 
+fixed-jq1.7.1  bad-no-rule            exit=0 status: error reason: response is not a rule Choice answer  | 
+fixed-jq1.8.1  bad-two-rule-answers   exit=0 status: error reason: response is not a rule Choice answer  | 
+fixed-jq1.7.1  bad-two-rule-answers   exit=0 status: error reason: response is not a rule Choice answer  | 
+fixed-jq1.8.1  bad-dup-values         exit=0 status: error reason: response is not a rule Choice answer  | 
+fixed-jq1.7.1  bad-dup-values         exit=0 status: error reason: response is not a rule Choice answer  | 
+fixed-jq1.8.1  bad-nonobject-probs    exit=0 status: error reason: response is not a rule Choice answer  | 
+fixed-jq1.7.1  bad-nonobject-probs    exit=0 status: error reason: response is not a rule Choice answer  | 
+fixed-jq1.8.1  bad-not-json           exit=0 status: error reason: response is not a rule Choice answer  | 
+fixed-jq1.7.1  bad-not-json           exit=0 status: error reason: response is not a rule Choice answer  | 
+# requests received by stub:       20, distinct path/auth: {"path": "/v1/decisions", "auth_present": true 
+--- full output, fixed on jq 1.8.1, valid answer
+dispatch-resolve:
+  status: clear
+  model: gpt-6-luna   latency_ms: 0   tokens: 700/5
+  rule: rule_2 (A simple bug fix with a stated root cause.)   confidence: 0.9
+  probabilities: rule_1=0.02 rule_2=0.96 default=0.02
+  note: rule matched
+  candidate: cursor:cursor-grok-4.6-medium  provider=cursor  -> eligible (quota ranking off: home declares a single shared quota)
+  profile: --harness 'cursor' --model 'cursor-grok-4.6-medium'
