@@ -1,0 +1,23 @@
+{'a11y-keyboard': (3, 3), 'completed-count': (3, 3), 'dedupe-active': (3, 3), 'due-dates': (3, 3), 'fix-duplicate-ids': (3, 3), 'multiple-lists': (3, 3), 'overdue': (3, 3), 'refactor-state': (3, 3), 'undo-delete': (3, 3)}
+n 27 27 means 0.539 0.866 ratio 1.606 range 0.2580555555555556 0.9980555555555556 0.4494444444444445 1.3519444444444446 sd 0.195 0.199 0.26 0.265
+Q 0.998 1.0 full 26 27 short [('multiple-lists', (0.6472222222222223, 0.9473333333333332))]
+tasks 9 B higher on 9 p 0.0039
+a11y-keyboard 0.71 1.0
+completed-count 0.55 0.72
+dedupe-active 0.33 0.6
+due-dates 0.43 0.89
+fix-duplicate-ids 0.36 0.51
+multiple-lists 0.69 1.29
+overdue 0.73 1.08
+refactor-state 0.6 0.72
+undo-delete 0.46 0.98
+due-dates 3 0.43 0.89
+overdue 3 0.73 1.08
+edit-due-date 3 0.47 1.0
+sort-by-due 3 0.69 1.05
+due-soon 3 0.43 0.82
+search 3 0.5 0.92
+reschedule-overdue 3 0.49 0.84
+chain per feature geo 1.8 p 0.0156 higher 7
+A [3.72, 3.66, 3.81]
+B [6.34, 6.7, 6.76]

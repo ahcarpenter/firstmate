@@ -1,0 +1,20 @@
+== baseline
+fix-duplicate-ids src_added=50 readme=0
+refactor-state src_added=239 readme=3
+a11y-keyboard src_added=343 readme=1
+completed-count src_added=50 readme=0
+dedupe-active src_added=98 readme=0
+undo-delete src_added=282 readme=2
+multiple-lists src_added=587 readme=3
+due-dates src_added=213 readme=1
+overdue src_added=197 readme=3
+== agent-skills
+fix-duplicate-ids src_added=45 readme=0
+refactor-state src_added=213 readme=3
+a11y-keyboard src_added=219 readme=1
+completed-count src_added=18 readme=0
+dedupe-active src_added=69 readme=2
+undo-delete src_added=320 readme=3
+multiple-lists src_added=607 readme=3
+due-dates src_added=194 readme=0
+overdue src_added=215 readme=3
