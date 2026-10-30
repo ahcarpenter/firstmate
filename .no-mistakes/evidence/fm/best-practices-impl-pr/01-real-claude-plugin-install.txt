@@ -1,0 +1,44 @@
+$ claude plugin marketplace add addyosmani/agent-skills
+Adding marketplace…Cloning via SSH: git@github.com:addyosmani/agent-skills.git
+Refreshing marketplace cache (timeout: 120s)…
+Cloning repository (timeout: 120s): git@github.com:addyosmani/agent-skills.git
+Clone complete, validating marketplace…
+Cleaning up old marketplace cache…
+✔ Successfully added marketplace: addy-agent-skills (declared in user settings)
+$ claude plugin install agent-skills@addy-agent-skills
+Installing plugin "agent-skills@addy-agent-skills"...✔ Successfully installed plugin: agent-skills@addy-agent-skills (scope: user)
+$ claude plugin list --json
+[
+  {
+    "id": "agent-skills@addy-agent-skills",
+    "version": "0.6.14",
+    "scope": "user",
+    "enabled": true,
+    "installPath": "/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T/fm-lab.IZnTB2/ccfg/plugins/cache/addy-agent-skills/agent-skills/0.6.14",
+    "installedAt": "2026-10-30T16:54:11.291Z",
+    "lastUpdated": "2026-10-30T16:54:11.291Z",
+    "projectEnabled": false
+  },
+  {
+    "id": "moshi-hook@inline",
+    "version": "1.0.0",
+    "scope": "session",
+    "enabled": true,
+    "installPath": "/Users/ahcarpenter/.claude/moshi-plugin"
+  },
+  {
+    "id": "(suppressed)@skills-dir",
+    "version": "unknown",
+    "scope": "project",
+    "enabled": false,
+    "installPath": "",
+    "notes": [
+      "1 project-scope directory under ./.claude/skills/ that may load as a plugin was skipped because this workspace was not trusted when plugins were scanned. After accepting the trust dialog, run /reload-plugins (or relaunch) to load what qualifies."
+    ],
+    "noteDetails": [
+      {
+        "type": "project-scope-suppressed-untrusted"
+      }
+    ]
+  }
+]

@@ -1,0 +1,53 @@
+$ manifest-check after: unknown facet merge.decision
+addyosmani/agent-skills: facet merge.decision is outside the eleven flow positions
+addyosmani/agent-skills: the router skill's routing object disagrees with addyosmani/agent-skills's manifest; it should read {"manifest":"references/addyosmani/agent-skills/manifest.json","facets":{"i
+
+exit=1
+$ manifest-check after: replace at brief.done
+addyosmani/agent-skills: facet brief.done cannot be replaced or paired: the generated Definition of done stays firstmate's
+addyosmani/agent-skills: the router skill's routing object disagrees with addyosmani/agent-skills's manifest; it should read {"manifest":"references/addyosmani/agent-skills/manifest.json","facets":{"i
+
+exit=1
+$ manifest-check after: flow moves start off first
+addyosmani/agent-skills: flow must keep start first; nothing runs before the isolation check
+addyosmani/agent-skills: flow must keep report last; nothing runs after the done report
+
+exit=1
+$ manifest-check after: deliver before verify
+addyosmani/agent-skills: flow must list start, work, verify, deliver, report, and each worker insert exactly once
+addyosmani/agent-skills: flow must keep verify before deliver; nothing is delivered unverified
+addyosmani/agent-skills: the router skill's routing object disagrees with addyosmani/agent-skills's manifest; it should read {"manifest":"references/addyosmani/agent-skills/manifest.json","facets":{"i
+exit=1
+$ manifest-check after: flow names firstmate position cleanup.record
+addyosmani/agent-skills: flow must list start, work, verify, deliver, report, and each worker insert exactly once
+addyosmani/agent-skills: flow must not move cleanup.record, a firstmate position; a flow orders worker steps only
+addyosmani/agent-skills: the router skill's routing object disagrees with addyosmani/agent-skills's manifest; it should read {"manifest":"references/addyosmani/agent-skills/manifest.json","facets":{"i
+exit=1
+$ manifest-check after: launch.env adds an export
+manifest-check: ok
+exit=0
+$ manifest-check after: supported version not a tag
+addyosmani/agent-skills: version main is not a release tag; the supported list carries tags only
+addyosmani/agent-skills: fingerprints.tags must hold exactly the supported tags; regenerate with bin/fm-best-practices.sh fingerprints addyosmani/agent-skills --write
+
+exit=1
+
+$ fm-brief with a pack no adapter is carried for
+error: --best-practices names 'nobody/nothing', which this firstmate carries no adapter for; it carries: addyosmani/agent-skills, or pass none
+exit=1; scaffold left behind:        0
+$ fm-brief --secondmate --best-practices
+error: --best-practices applies only to ship and scout briefs; a secondmate charter is not a delivery contract
+exit=1
+
+--- launch.env restated with its real key (the export list the lib checks)
+key: null
+manifest-check: ok
+exit=0
+
+--- launch.env with a reference or a kinds switch
+$ .facets["launch.env"].reference="references/x.md"
+addyosmani/agent-skills: launch.env only extends, with the two exports firstmate writes; an adapter adds no switches
+exit=1
+$ .facets["launch.env"].kinds=["ship"]
+addyosmani/agent-skills: launch.env only extends, with the two exports firstmate writes; an adapter adds no switches
+exit=1

@@ -1,0 +1,31 @@
+### fm-sp-tag
+pid 458 (claude):
+FM_TASK_ID=sp-tag
+FM_BEST_PRACTICES=addyosmani/agent-skills
+FM_BEST_PRACTICES_VERSION=0.6.14
+### fm-sp-unrev
+pid 18372 (claude):
+FM_TASK_ID=sp-unrev
+FM_BEST_PRACTICES=addyosmani/agent-skills
+FM_BEST_PRACTICES_VERSION=unreviewed
+### fm-sp-miss
+pid 24759 (claude):
+FM_TASK_ID=sp-miss
+FM_BEST_PRACTICES=addyosmani/agent-skills
+FM_BEST_PRACTICES_VERSION=missing
+### fm-sp-plain
+pid 6998 (claude):
+FM_TASK_ID=sp-plain
+
+### typed launch in pane sp-unrev
+export FM_TASK_ID=sp-unrev
+export FM_TASK_ID=sp-unrev                                                                                                                  
+❯ export FM_TASK_ID=sp-unrev
+### fm-sp-ahead
+FM_TASK_ID=sp-ahead
+FM_BEST_PRACTICES=addyosmani/agent-skills
+FM_BEST_PRACTICES_VERSION=0.6.14
+### fm-sp-scout
+FM_TASK_ID=sp-scout
+FM_BEST_PRACTICES=addyosmani/agent-skills
+FM_BEST_PRACTICES_VERSION=0.6.14

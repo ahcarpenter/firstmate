@@ -1,0 +1,15 @@
+✔ Successfully disabled plugin: agent-skills (scope: user)
+### clone is behind origin; only origin's commit enables the pack
+$ version read of the clone itself:
+missing: installed but not enabled; agent-skills@addy-agent-skills is disabled by enabledPlugins in /private/var/folders
+spawned sp-ahead harness=claude kind=ship mode=local-only yolo=off window=primary:fm-sp-ahead worktree=/Users/ahcarpenter/.treehouse/ahead-2f3941/1/ahead
+exit=0
+✔ Successfully enabled plugin: agent-skills (scope: user)
+
+### scout launch
+best-practices-route:
+  status: off
+  repository: addyosmani/agent-skills
+spawned sp-scout harness=claude kind=scout window=primary:fm-sp-scout worktree=/Users/ahcarpenter/.treehouse/demo-app-493e2b/4/demo-app
+exit=0
+DONE2

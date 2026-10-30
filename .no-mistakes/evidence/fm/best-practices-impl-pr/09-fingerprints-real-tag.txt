@@ -1,0 +1,3 @@
+### fingerprints regenerated from the real pack tag match the manifest
+exit=0
+identical to manifest (22 skills, tags ["0.6.14"])

@@ -1,0 +1,126 @@
+### route: confident provider narrows the section; only the practice section changes
+static section+brief lines:      174
+best-practices-route:
+  status: routed
+  repository: addyosmani/agent-skills
+  model: lab-model   latency_ms: 0   tokens: 1/1
+  row: bug-fix = true (routed p=0.97)
+  row: trivial = false (routed p=0.03)
+  row: security = false (routed p=0.03)
+  row: performance = false (routed p=0.03)
+  row: api = false (routed p=0.03)
+  row: observability = false (routed p=0.03)
+  row: deprecation = false (routed p=0.03)
+  row: frontend = true (fallback: p=0.55 is inside the 0.6 floor)
+  row: browser = false (routed p=0.03)
+  row: ci-cd = false (routed p=0.03)
+  row: refactor = false (routed p=0.03)
+  row: source-driven = false (routed p=0.03)
+  row: source-citations = false (routed p=0.03)
+  row: risky = false (routed p=0.03)
+  row: doubt = false (fact mode=local-only)
+  section: recomposed in $LAB/data/r1/brief.md
+exit=0
+routed brief lines:      159
+text above the practice section: unchanged
+reproduce step kept (bug fix): 1
+security rows left after a confident no: 0
+frontend rows kept after an unsure 0.55: 1
+{"path":"/v1/systemone","auth":null,"n_questions":14,"state_keys":["brief","project"],"has_boilerplate":false}
+second route: byte-identical (idempotent)
+
+### route: provider fails (500) keeps the static table
+best-practices-route: error (http 500 after 0 ms)
+best-practices-route:
+  status: error
+  repository: addyosmani/agent-skills
+  reason: http 500 after 0 ms
+  section: recomposed in $LAB/data/rf-500/brief.md
+exit=0 after 1s
+security rows kept: 1
+
+### route: provider fails (bad) keeps the static table
+best-practices-route: error (response does not answer every row in its type's shape)
+best-practices-route:
+  status: error
+  repository: addyosmani/agent-skills
+  reason: response does not answer every row in its type's shape
+  section: recomposed in $LAB/data/rf-bad/brief.md
+exit=0 after 1s
+security rows kept: 1
+
+### route: provider fails (slow) keeps the static table
+best-practices-route: error (http 000 after 11000 ms)
+best-practices-route:
+  status: error
+  repository: addyosmani/agent-skills
+  reason: http 000 after 11000 ms
+  section: recomposed in $LAB/data/rf-slow/brief.md
+exit=0 after 11s
+security rows kept: 1
+
+### route: no key and no provider sends nothing
+best-practices-route: off (TYPESAFE_API_KEY absent from the environment and $LAB/.env)
+best-practices-route:
+  status: off
+  repository: addyosmani/agent-skills
+  reason: TYPESAFE_API_KEY absent from the environment and $LAB/.env
+  section: recomposed in $LAB/data/rk/brief.md
+requests reaching the endpoint: 0
+
+### route: never-send list withholds the request
+best-practices-route: off (brief text matches $LAB/config/dispatch-never-send line 1; nothing sent)
+best-practices-route:
+  status: off
+  repository: addyosmani/agent-skills
+  reason: brief text matches $LAB/config/dispatch-never-send line 1; nothing sent
+  section: recomposed in $LAB/data/rn/brief.md
+requests reaching the endpoint: 0
+
+### route: the key never reaches argv or a child env
+(see typesafe key test in tests/fm-best-practices.test.sh; systemone host below receives the key through fd 3)
+{"auth":"Bearer lab-secret-key"}
+
+### intake: captain's own words win in code; substrings do not
+$ ask: Grill me on the rollout plan
+  status: routed
+  row: tier = tier-4 (words "grill me")
+  row: idea = false (routed p=0.03)
+  rows sent to provider: ["idea"]
+$ ask: Please interview me about the login redesign
+  status: routed
+  row: tier = tier-4 (words "interview me")
+  row: idea = false (routed p=0.03)
+  rows sent to provider: ["idea"]
+$ ask: add interview metrics to the candidate page
+  status: routed
+  row: tier = tier-2 (fallback: no listed option applies)
+  row: idea = false (routed p=0.03)
+  rows sent to provider: ["idea","tier"]
+$ ask: update the grill menu page
+  status: routed
+  row: tier = tier-2 (fallback: no listed option applies)
+  row: idea = false (routed p=0.03)
+  rows sent to provider: ["idea","tier"]
+
+### intake: provider low confidence keeps one question
+  status: routed
+  row: tier = tier-2 (fallback: confidence 0.4 below 0.6)
+  row: idea = false (routed p=0.03)
+  reference: ROOT/.agents/skills/best-practices-adapters/references/addyosmani/agent-skills/intake-question.md
+
+### jq 1.8 path: same route with the Homebrew jq first on PATH
+jq-1.8.2
+  status: routed
+  row: bug-fix = true (routed p=0.97)
+  row: security = false (routed p=0.03)
+  row: frontend = true (fallback: p=0.55 is inside the 0.6 floor)
+0 security rows after confident no
+  status: routed
+  row: tier = tier-4 (words "grill me")
+  row: idea = false (routed p=0.03)
+manifest-check: ok
+### while route waits on the provider, processes whose argv or env holds the key:
+curl running: 10552 curl -sS --max-time 10 -o /var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T/tmp.EGmgtjBDy2/response.json -w %{http_code} -X POST http://127.0.0.1:18735/v1/systemone -H Content-Type:
+hits among curl and children: 0
+{"auth":"Bearer lab-secret-key-xyz"}

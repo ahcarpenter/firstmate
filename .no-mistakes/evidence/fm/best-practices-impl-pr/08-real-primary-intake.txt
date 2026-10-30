@@ -1,0 +1,55 @@
+### real Claude primary (normal login, lab FM_HOME, private tmux socket), final pane
+     … +96 lines (ctrl+o to expand)
+  ⎿  Allowed by auto mode classifier
+⏺ I'll check that creating this new backlog hasn't made it harder to clean up the six old records that currently have no rows in it.
+⏺ Bash(sed -n 726,775p bin/fm-teardown.sh; echo "=== close transition on a missing row:"; grep -n -E "no such|not found|absent|missing" bin/fm-backlog-transition-lib.s…)
+  ⎿  if [ "$TEARDOWN_BACKLOG_APPLIES" = 1 ]; then
+       if ! fm_backlog_meta_spawn_gen "$META" "$STATE"; then
+         TEARDOWN_LEGACY_GEN_COUNT=$(LC_ALL=C awk -F= '$1 == "spawn_gen" { count++ } END { print count + 0 }' "$META" 2>/dev/null || printf '0\n')
+     … +48 lines (ctrl+o to expand)
+  ⎿  Allowed by auto mode classifier
+⏺ Captain, the brief is filled and nothing has launched:
+  $LAB/data/demo-app-readme/brief.md
+  The worker would change only README.md, replacing the current hi with a demo-app heading and a sentence or two saying it's a demo application. The work stops on a local
+  branch with no PR, and landing it waits for your approval. I also filed the backlog item and marked it as waiting for your go-ahead, so it can't launch until you give
+  it.
+  One question: is "a demo application" the right description? The repo has only that one-line README, the name, and a project listing that says "demo", so this is my
+  best guess and it's what the brief currently says. If demo-app is something more specific, send me the wording and I'll update the brief before launch.
+  Three other things you should know:
+  - Agent-skills pack is off: it's installed but disabled in your user settings, so a worker launched now would follow firstmate's defaults instead. That's fine for this
+    edit. To turn it on, run claude plugin enable agent-skills@addy-agent-skills --scope user.
+  - Automatic routing didn't run: no provider key is set, so the brief keeps every pack practice section, including ones that don't apply to a README edit. Launch would
+    use the default worker setup.
+  - Six old task records remain: they have no live workers and their isolated copies are gone, and demo-app has no leftover branches from them. I left the records in
+    place. This is the home's first backlog, so cleaning them up now goes through the backlog checks, and I haven't tested how that behaves for records with no backlog
+    entry.
+✻ Cogitated for 3m 58s · done 1:07 PM
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ "A demo application" is right, go ahead and spawn
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  ~/.no-mistakes/worktrees/4d12af90a03c/01M66T9BYS8AKRXZH9ZQMHGF7R (e2df6030) • Demo-app README project description
+  ↑30 ↓22k R1.3M W124k CH98.5% $1.696 (sub) 15.0%/1.0M (auto)                                                                                    claude-opus-5-5 • xhigh
+  ⏵⏵ auto mode on (shift+tab to cycle) · gh auth login for PR status
+                                                                                                                  Update available! Run: brew upgrade claude-code@latest
+
+### brief the primary wrote
+105:Delivery contract: mode=local-only best-practices=addyosmani/agent-skills
+3:# Task
+20:# Herdr lifecycle declaration - NOT ENABLED
+25:# Setup
+34:# Rules
+94:# Firstmate instruction inbox
+100:# Project memory
+104:# Definition of done
+114:# Best practices: addyosmani/agent-skills
+## Captain's intent
+Ship a small change on the demo-app project: the README should say what the project is.
+
+## Firstmate spec
+Edit `README.md` at the repository root and nothing else.
+
+The repository gives little to work from: `README.md` is its only tracked file and holds the single line `hi`.
+The only other facts are the project's name, `demo-app`, and its registered description, `demo`.
+
+Replace the `hi` line with a `# demo-app` heading and one or two plain sentences saying this is a demo application.
+0

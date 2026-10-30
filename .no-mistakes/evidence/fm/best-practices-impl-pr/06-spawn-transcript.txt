@@ -1,0 +1,56 @@
+### spawn ok: tag
+
+$ fm-spawn.sh sp-tag projects/demo-app --mode local-only --yolo off --harness claude
+fm-gate-refuse: gate agent lifecycle permitted only against lab home $LAB
+spawned sp-tag harness=claude kind=ship mode=local-only yolo=off window=primary:fm-sp-tag worktree=/Users/ahcarpenter/.treehouse/demo-app-493e2b/1/demo-app
+exit=0
+
+### brief without the token on a registered project
+
+$ fm-spawn.sh sp-nobrief projects/demo-app --mode local-only --yolo off --harness claude
+fm-gate-refuse: gate agent lifecycle permitted only against lab home $LAB
+error: best-practices mismatch for sp-nobrief: demo-app is registered best-practices=addyosmani/agent-skills but $LAB/data/sp-nobrief/brief.md records best-practices=none; ke
+exit=1
+
+### brief with the token on a plain project
+
+$ fm-spawn.sh sp-noreg projects/plain --mode local-only --yolo off --harness claude
+fm-gate-refuse: gate agent lifecycle permitted only against lab home $LAB
+error: best-practices mismatch for sp-noreg: plain is registered best-practices=none but $LAB/data/sp-noreg/brief.md records best-practices=addyosmani/agent-skills; keep the 
+exit=1
+
+### refused registry value
+warning: re-init: ignored --initial-branch=main
+
+$ fm-spawn.sh sp-bad projects/bad-token --mode local-only --yolo off --harness claude
+fm-gate-refuse: gate agent lifecycle permitted only against lab home $LAB
+refused: unknown best-practices pack "nobody/nothing" registered for bad-token in $LAB/data/projects.md; this firstmate carries adapters for: addyosmani/agent-skills; correct
+error: sp-bad cannot launch: the best-practices token registered for bad-token does not resolve (see the refusal above); correct data/projects.md and spawn again
+exit=1
+
+### plain project, no token
+
+$ fm-spawn.sh sp-plain projects/plain --mode local-only --yolo off --harness claude
+fm-gate-refuse: gate agent lifecycle permitted only against lab home $LAB
+spawned sp-plain harness=claude kind=ship mode=local-only yolo=off window=primary:fm-sp-plain worktree=/Users/ahcarpenter/.treehouse/plain-eb0676/1/plain
+exit=0
+
+### edited skill: unreviewed launch
+
+$ fm-spawn.sh sp-unrev projects/demo-app --mode local-only --yolo off --harness claude
+fm-gate-refuse: gate agent lifecycle permitted only against lab home $LAB
+notice: sp-unrev launches with FM_BEST_PRACTICES_VERSION=unreviewed for addyosmani/agent-skills on claude: interview-me differs from the reviewed 0.6.14 text (runtime label 0.6.14); the adapter still applies and the worker names these skill
+spawned sp-unrev harness=claude kind=ship mode=local-only yolo=off window=primary:fm-sp-unrev worktree=/Users/ahcarpenter/.treehouse/demo-app-493e2b/2/demo-app
+exit=0
+
+### disabled at both scopes: missing launch
+✔ Successfully disabled plugin: agent-skills (scope: user)
+
+$ fm-spawn.sh sp-miss projects/demo-app --mode local-only --yolo off --harness claude
+fm-gate-refuse: gate agent lifecycle permitted only against lab home $LAB
+notice: sp-miss launches with FM_BEST_PRACTICES_VERSION=missing for addyosmani/agent-skills on claude (installed but not enabled; agent-skills@addy-agent-skills is disabled by enabledPlugins in /private/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9
+spawned sp-miss harness=claude kind=ship mode=local-only yolo=off window=primary:fm-sp-miss worktree=/Users/ahcarpenter/.treehouse/demo-app-493e2b/3/demo-app
+exit=0
+✔ Successfully enabled plugin: agent-skills (scope: user)
+
+DONE

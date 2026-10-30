@@ -1,0 +1,120 @@
+### catalog and manifest check on the shipped adapter
+$ fm-best-practices.sh adapters
+addyosmani/agent-skills
+$ fm-best-practices.sh manifest-check
+manifest-check: ok
+exit=0
+
+### registry token
+$ fm-project-mode.sh --best-practices demo-app
+addyosmani/agent-skills
+exit=0
+$ fm-project-mode.sh --best-practices plain
+none
+exit=0
+$ fm-project-mode.sh --best-practices bad-token
+refused: unknown best-practices pack "nobody/nothing" registered for bad-token in $LAB/data/projects.md; this firstmate carries adapters for: addyosmani/agent-skills; correct the registry entry or drop the token
+exit=3
+$ fm-project-mode.sh --best-practices bad-shape
+refused: malformed best-practices binding "best-practices=notaslug" registered for bad-shape in $LAB/data/projects.md; the value is the pack's repository as <owner>/<repo>, such as best-practices=addyosmani/agent-skills; correct the registry entry
+exit=3
+
+### project add: propose
+$ propose projects/demo-app
+best-practices-propose:
+  project: /private/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T/fm-lab.IZnTB2/projects/demo-app
+  propose: best-practices=addyosmani/agent-skills (claude: agent-skills@addy-agent-skills is enabled by enabledPlugins in the project's committed .claude/settings.json)
+$ propose projects/machine-only
+best-practices-propose:
+  project: /private/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T/fm-lab.IZnTB2/projects/machine-only
+  propose: none
+  carried: addyosmani/agent-skills
+$ propose projects/plain
+best-practices-propose:
+  project: /private/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T/fm-lab.IZnTB2/projects/plain
+  propose: none
+  carried: addyosmani/agent-skills
+
+### check against the real install
+$ check (installed, enabled, 0.6.14)
+best-practices-check:
+  repository: addyosmani/agent-skills
+  harness: claude
+  project: /private/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T/fm-lab.IZnTB2/projects/demo-app
+  status: ok
+  found: agent-skills@addy-agent-skills is enabled by enabledPlugins in the project's committed .claude/settings.json, version 0.6.14
+exit=0
+$ check --harness pi
+best-practices-check:
+  repository: addyosmani/agent-skills
+  harness: pi
+  project: /private/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T/fm-lab.IZnTB2/projects/demo-app
+  status: problem
+  problem: read-unproven
+  found: no read is implemented for pi
+  remedy: firstmate's read of pi is not yet proven live (the pack documents pi install git:github.com/addyosmani/agent-skills, covering pi and pi-signed; firstmate has no read of that install yet, so it is not yet proven live), so the adapter cannot confirm the pack; harnesses with a proven read: claude, codex, omp, agy, gemini, commandcode, opencode, cursor
+exit=1
+$ check --harness grok
+best-practices-check:
+  repository: addyosmani/agent-skills
+  harness: grok
+  project: /private/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T/fm-lab.IZnTB2/projects/demo-app
+  status: problem
+  problem: runtime-unsupported
+  found: the pack ships no install path for grok
+  remedy: the crew runtime grok is not one both firstmate and the pack support; the harnesses both support are agy, claude, codex, commandcode, cursor, gemini, omp, opencode, pi, pi-signed; dispatch this project on one of them or drop the token
+exit=1
+$ check --harness codex (no codex install in this home)
+best-practices-check:
+  repository: addyosmani/agent-skills
+  harness: codex
+  project: /private/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T/fm-lab.IZnTB2/projects/demo-app
+  status: problem
+  problem: not-installed
+  found: no Codex configuration at $LAB/codex/config.toml
+  remedy: install it: codex plugin marketplace add addyosmani/agent-skills, then codex plugin add agent-skills@agent-skills
+exit=1
+
+### real disable through the real CLI
+✔ Successfully disabled plugin: agent-skills (scope: user)
+best-practices-check:
+  repository: addyosmani/agent-skills
+  harness: claude
+  project: /private/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T/fm-lab.IZnTB2/projects/plain
+  status: problem
+  problem: not-enabled
+  found: agent-skills@addy-agent-skills is disabled by enabledPlugins in $LAB/ccfg/settings.json
+  remedy: enable it where it is disabled: claude plugin enable agent-skills@addy-agent-skills --scope user
+exit=1
+$ version
+missing: installed but not enabled; agent-skills@addy-agent-skills is disabled by enabledPlugins in $LAB/ccfg/settings.json
+✔ Successfully enabled plugin: agent-skills (scope: user)
+
+### local edit to an installed skill reads unreviewed
+best-practices-check:
+  repository: addyosmani/agent-skills
+  harness: claude
+  project: /private/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T/fm-lab.IZnTB2/projects/demo-app
+  status: unreviewed
+  found: agent-skills@addy-agent-skills is enabled by enabledPlugins in the project's committed .claude/settings.json
+  unreviewed: interview-me differs from the reviewed 0.6.14 text (runtime label 0.6.14)
+  supported: 0.6.14
+exit=0
+$ version
+unreviewed: interview-me differs from the reviewed 0.6.14 text (runtime label 0.6.14)
+$ version (reverted)
+0.6.14
+
+### uninstall through the real CLI
+✔ Successfully uninstalled plugin: agent-skills (scope: user)
+best-practices-check:
+  repository: addyosmani/agent-skills
+  harness: claude
+  project: /private/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T/fm-lab.IZnTB2/projects/demo-app
+  status: problem
+  problem: not-installed
+  found: no installed plugin named agent-skills resolves to addyosmani/agent-skills in $LAB/ccfg/plugins/installed_plugins.json
+  remedy: install it: claude plugin marketplace add addyosmani/agent-skills, then claude plugin install agent-skills@addy-agent-skills
+exit=1
+$ version
+missing: not installed; no installed plugin named agent-skills resolves to addyosmani/agent-skills in $LAB/ccfg/plugins/installed_plugins.json
