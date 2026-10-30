@@ -1,0 +1,7 @@
+$ bin/fm-doc-audience-check.sh
+fm-doc-audience-check: ok surfaces=135 local_links=1084
+exit=0
+
+$ bin/fm-doc-audience-check.sh --inventory <copy without docs/best-practices-adapters-design.md>
+fm-doc-audience-check: unclassified: docs/best-practices-adapters-design.md
+exit=1
