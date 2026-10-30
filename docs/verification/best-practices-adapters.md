@@ -17,13 +17,13 @@ Paths under `eval/` below are in both repositories.
   Mean quality was 0.998 without the pack and 1.000 with it (26 and 27 full successes of 27); the difference is not significant (p = 1.0).
 - **Maintainability: the same.** Neither arm broke any earlier feature across the seven-link chain, every follow-up change passed on both arms' code, the next change cost the same on either arm's code, and complexity, duplication, lint, type escapes, and test coverage are indistinguishable.
 - **Cost: higher with the pack.** The adapter costs 1.61 times as much per task (higher on all nine, significant), 1.80 times per feature along the chain, and 1.32 times as much to own once the next change is counted, using about twice the tokens and 1.9 times the time.
-- **The pack was followed.** Adapter-arm runs reviewed their own change, checked that their tests can fail, and kept to scope far more often than the baseline; the extra care changed how the work was done, not what it delivered.
+- **The pack was followed.** Adapter-arm runs reviewed their own change and checked that their tests can fail far more often than the baseline, and kept to scope slightly more often (27 against 24 of 27); the extra care changed how the work was done, not what it delivered.
 - **Verdict.** By the bar written before the first run, the adapter does not beat the baseline, and the setup without the pack is recommended: it is simpler and cheaper.
   These tasks were easy enough that both arms succeeded almost every time, so this rules out a benefit at this difficulty, not on harder work; a more complex evaluation and a week of real use on real work follow.
 
 ## What this measures
 
-The RFC proposes a `best-practices=<owner>/<repo>` registry token whose adapter adds a pack's engineering practice to firstmate's worker brief, starting with [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) 0.6.14.
+The [RFC](https://github.com/kunchenguid/firstmate/pull/7980) proposes a `best-practices=<owner>/<repo>` registry token whose adapter adds a pack's engineering practice to firstmate's worker brief, starting with [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) 0.6.14.
 Being wired correctly is not the bar: a plausible practice can make an agent worse.
 This evaluation runs the same tasks with and without the adapter and compares success, rework, time, tokens, and what a team gets from the result, then applies a verdict rule written down before the first paid run.
 On the author's word, the bar was amended once while the first runs were under way and before anything was graded, then frozen: cheap passes that leave harder-to-change code must not rate well, so a seven-link dependent chain, a future-change probe for every run, maintainability measures, and a test-value measure were added, and the blind reviewer was calibrated against the author.
@@ -60,8 +60,10 @@ Each task has a canned answer, fixed in advance, given only if the worker stops 
 
 The two arms differ only in the adapter:
 
-- **A, baseline**: the local-only ship brief `bin/fm-brief.sh` composes at the firstmate commit under test (`29abcc73` on the adapter's review branch, rebased onto `main` at `b936f040`), without `--best-practices`.
+- **A, baseline**: the local-only ship brief `bin/fm-brief.sh` composes at the firstmate commit under test ([`29abcc73`](https://github.com/ahcarpenter/firstmate/tree/best-practices-eval-tested), the adapter's implementation rebased onto `main` at `b936f040`), without `--best-practices`.
 - **B, adapter**: the same brief with `--best-practices addyosmani/agent-skills`, which appends the adapter's practice section (its static full table), the pack's 0.6.14 release loaded into the session, and the spawn's two exports, `FM_BEST_PRACTICES=addyosmani/agent-skills` and `FM_BEST_PRACTICES_VERSION=0.6.14`.
+
+The `--best-practices` option and `bin/fm-best-practices.sh` cited in this report live at the `best-practices-eval-tested` tag, which points to `29abcc73`, and in [#7981](https://github.com/kunchenguid/firstmate/pull/7981), not on `main`.
 
 The pack copy's 22 depended-on `SKILL.md` files hash to exactly the adapter's recorded 0.6.14 fingerprints (`bin/fm-best-practices.sh fingerprints --source 0.6.14=<copy>` output identical to the manifest's), so arm B runs the reviewed text.
 
@@ -103,7 +105,7 @@ The grader was proven before any run, against the untouched fixture and two refe
 | `overdue` | 0 of 6, edge 0 of 1 | 6 of 6, edge 1 of 1 |
 | `multiple-lists` | 0 of 7, edge 1 of 1 | 7 of 7, edge 1 of 1 |
 
-Checking the grader this way found and fixed five test defects before any run: seed data that missed the seeded bug, two count checks that failed when adjacent inline elements ran together in the page text, a due-date test that assumed the date field clears, and two checks that read the list before a navigation settled.
+Checking the grader this way found and fixed six test defects before any run: seed data that missed the seeded bug, two count checks that failed when adjacent inline elements ran together in the page text, a due-date test that assumed the date field clears, and two checks that read the list before a navigation settled.
 It also showed the accessibility tests catch a real trap: a delete button kept `display: none` until hover cannot take keyboard focus and is absent from the accessibility tree, so "show it on `:focus`" alone fails.
 
 After the runs, four more defective tests were found and fixed under the bar's fix-once rule, with every result of both arms re-graded; they are listed under Results with the scores before and after.
@@ -128,7 +130,7 @@ Added by the amendment (all defined before grading in `eval/BAR.md`):
   Writing tests does not count as good by itself.
 - Practice application, a diagnostic outside every rule: whether each run actually applied the practices in the brief and the adapter's section (reproduce first, run the repository's checks before done, record assumptions on an underspecified ask, review and simplify, update docs, keep scope), scored mechanically from the tool-call order where it shows and otherwise by the blind reviewer from redacted step summaries.
   It doubles as a manipulation check on whether the pack was followed at all.
-- Reviewer calibration: the author scores six runs blind with the same rubric; a criterion where the author and Codex differ by a point or more on average is rewritten and every run re-scored before any reviewer number is read.
+- Reviewer calibration: the author scores six runs blind with the same rubric; a criterion where the author and Codex differ by a point or more on average (0.75 or more on the overall score) is rewritten and every run re-scored before any reviewer number is read.
 
 What a team gets, beside the per-run numbers:
 
@@ -413,7 +415,7 @@ Every calibration point is kept, including the author's deliberately low score f
 What the columns show:
 - The original rubric barely discriminates: on the overall score it gave every change a 4 or 5 (standard deviation 0.37) while the author ranged from 2 to 5, and it put only 3 of the 15 pairs in the author's order.
 - Revision 2 orders follow-ups exactly as the author does (15 of 15 pairs) and spreads its overall scores across the author's range, with the overall ranking moving from no agreement to a modest one (ρ +0.44).
-- No version tracks the author on verification (ρ 0 under both revisions): the reviewer's verification scores hardly vary, so it cannot rank changes the way the author did.
+- Neither revision tracks the author on verification (ρ 0 under both, against +0.53 under the original rubric): the reviewer's verification scores hardly vary, so it cannot rank changes the way the author did.
 
 ## Verdict
 
@@ -441,9 +443,9 @@ The amendment's maintainability reading agrees:
   The analysis flags them as disagreeing only because +0.002 and 0.000 differ in sign.
 
 What the adapter adds that the baseline misses is process, not outcome.
-Its runs reviewed their own change, checked that their tests can fail, kept strictly to scope, reproduced the bug first, and ran the full set of repository checks before done, all far more often than the baseline.
+Its runs reviewed their own change, checked that their tests can fail, reproduced the bug first, and ran the full set of repository checks before done, all far more often than the baseline, and kept to scope slightly more often (27 against 24 of 27).
 On these tasks, that extra care neither caught nor prevented anything the hidden tests could see.
-It took about 1.6 to 1.9 times the money, tokens, and time.
+It took about 1.6 times the money, 2 times the tokens, and 1.9 times the time.
 
 ## Recommendation
 
@@ -469,7 +471,7 @@ It took about 1.6 to 1.9 times the money, tokens, and time.
 - **Local-only delivery.** The adapter's `doubt-driven-development` cycle, which it adds only on projects that ship through a validation pipeline, is not exercised.
 - **No regressions to catch.** No later change broke an earlier test in either arm, so the test-value measure is empty.
 - **The hidden tests are the evaluator's.** Four were found defective after the runs and fixed under the bar's rule, with both scores reported; a defect still undiscovered would affect both arms alike, as these four did.
-- **The blind review is weak evidence.** Calibrated against the author on six changes, the rubric of record still differs from the author by a point or more on follow-ups, verification, and the overall score, and the redaction markers that hide the setup's name lowered the adapter arm's summary and handoff scores.
+- **The blind review is weak evidence.** Calibrated against the author on six changes, the rubric of record still differs from the author past the materiality rule on follow-ups (1.17), verification (1.00), and the overall score (0.83, against 0.75 for that score), and the redaction markers that hide the setup's name lowered the adapter arm's summary and handoff scores.
   Six changes give the calibration statistics wide uncertainty.
 - **Redaction hides names, not style.** A reviewer may still guess the arm.
 - **Scope creep can pre-empt a follow-up.** One run added undo to "Clear completed" unasked, which is that task's follow-up probe, so its probe cost little and passed; maintainability-adjusted quality and cost of ownership can flatter scope creep, while the revised follow-ups criterion counts it against the run.
