@@ -1,7 +1,8 @@
 # Best-practices pack adapters: the design
 
 This document is the full design behind the pull request that proposes best-practices pack adapters.
-The pull request description carries the problem, one diagram of the flow, the proposal in summary, the outcome-evidence plan, and the open questions; this document carries everything in full.
+The pull request description carries the problem, one diagram of the flow, the proposal in summary, the outcome evidence, and the open questions; this document carries everything in full.
+What it proposes is the mechanism, with every adapter gated on evidence that it beats the baseline on real work.
 It is a proposal: once the mechanism lands, the implementation's own documents own the current contract, and this document stays as the record of the design and the reasons behind it.
 
 ## TL;DR
@@ -14,7 +15,8 @@ It can also insert a facet the pack has and firstmate does not, at any point in 
 Whatever the adapter does not mention stays as it is, and firstmate's safety rules are off limits to every adapter: the destructive and outward-facing ones, merge authority, the worker's isolation and no-push rule, and the isolation check first and the done report last.
 The pack itself stays the runtime's own install, and an adapter supports every harness that both firstmate and the pack support, not a hand-picked pair.
 The token comes up the way the forge does when you add a project: firstmate proposes it from what the project already enables, writes it only after you confirm it, and checks the pack itself the way it checks a tool login, so you only hear about it when something is wrong.
-First adapter: Addy Osmani's agent-skills 0.6.14, on the nine harnesses both firstmate and the pack support.
+The worked sample is an adapter for Addy Osmani's agent-skills 0.6.14, on the nine harnesses both firstmate and the pack support.
+It is a sample, not a recommended pack: it did not beat the baseline on the first evaluation, at 1.61 times the cost per task for the same quality.
 
 ## What I ran into
 
@@ -114,9 +116,18 @@ A task set too small to separate the two arms is reported as too small, not as a
 The record lives in `docs/verification/best-practices-adapters.md` beside the resolver's record, per adapter and per reviewed tag, with the task set and the rubric named, so the next reviewer re-runs it rather than trusts it.
 The test that fails on a stale hash proves the adapter is wired to the text it reviewed; this proves the text was worth wiring.
 
-Running it is a separate task, and this document claims no numbers.
-The first evaluation's results and both builds of the app are published where a reader can check them: the evaluation report arrives as its own pull request to this repository, beside the pull request that proposes this design and the one that carries the sample implementation, and that evidence pull request links two repositories in my account, one holding the base version built without the adapter and one holding the version built with Addy's agent-skills through it, under the working names `github.com/ahcarpenter/firstmate-eval-todomvc-baseline` and `github.com/ahcarpenter/firstmate-eval-todomvc-agent-skills`.
-The plan and the bar are stated here; the numbers live there.
+The first evaluation ran this plan on Addy's agent-skills 0.6.14, and the adapter did not clear the bar.
+Mean quality was 0.998 without the pack and 1.000 with it (p = 1.0), and maintainability was the same.
+Cost was higher with the pack: 1.61 times per task, 1.80 times per feature along a chain, and 1.32 times the cost of ownership.
+The pack's practices were followed and did not change outcomes.
+By the verdict rule the setup without the pack is the better one, so agent-skills is this design's worked sample, not a recommended pack, and this result does not make its adapter ready to ship.
+Both arms hit the ceiling on these tasks, so the result rules out a benefit at this difficulty, not on harder work.
+The bar stays as written.
+
+The evaluation can be rerun for any later pack or version: its bar, tasks, hidden grader, review material, and run plans are published with both builds.
+I will also run the sample implementation on my own work for the next week or so and report back, as the test on harder work that the first evaluation could not show.
+The results are published where a reader can check them: the evaluation report arrives as its own pull request to this repository, beside the pull request that proposes this design and the one that carries the sample implementation, and it links the two builds, the [base version built without the adapter](https://github.com/ahcarpenter/firstmate-eval-todomvc-baseline) and the [version built with Addy's agent-skills through it](https://github.com/ahcarpenter/firstmate-eval-todomvc-agent-skills).
+The plan, the bar, and the verdict are stated here; the full numbers live there.
 
 ### Extend, replace, or pair with firstmate's SDLC facets; insert into or reorder its flow
 
@@ -352,8 +363,9 @@ If the pack is updated or edited after that check, the harness keeps loading it,
 The spawn's read sees that too, writes `FM_BEST_PRACTICES_VERSION=unreviewed`, and prints its one notice naming the skills that differ, with the runtime's version label as the hint; the adapter still applies, because those skills are in the worker's hands either way and the alternative is a loaded pack with nothing governing it, and the worker names the unreviewed skills in its done summary.
 Same shape as a tool login that expired after the add, surfaced at the point of use rather than at intake, but now deterministic: nothing quietly lies about what ran.
 
-### First adapter: Addy Osmani's agent-skills
+### Worked sample adapter: Addy Osmani's agent-skills
 
+This adapter is the mechanism's worked sample, not a recommended pack: it did not clear the bar on the first evaluation, as the outcome evidence above states.
 A project registers it as `best-practices=addyosmani/agent-skills`.
 Supported, as `references/addyosmani/agent-skills/` states: tag 0.6.14 (commit `eb07f19f`), with a hash per file of the 22 skills this adapter names at that tag, on the nine harnesses both sides support.
 As a plugin on Claude Code (plugin `agent-skills`, marketplace `addy-agent-skills`, whose entry resolves to that repository), Codex (marketplace `agent-skills`), Oh My Pi (marketplace `addy-agent-skills`), and Antigravity; as a CLI-installed skills directory on Gemini CLI and Command Code; as a copied skills directory on OpenCode and Cursor; as a git package on Pi (`pi` and `pi-signed`).
