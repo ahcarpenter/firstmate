@@ -1,0 +1,67 @@
+$ fm-project-mode.sh --best-practices demo
+addyosmani/agent-skills
+$ fm-brief.sh bp1 demo --mode no-mistakes --best-practices addyosmani/agent-skills
+scaffolded: /var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.5p5Kow/data/bp1/brief.md (ship, mode=no-mistakes best-practices=addyosmani/agent-skills; replace {TASK} and {FIRSTMATE_SPEC})
+(exit 0)
+$ fm-brief.sh bp2 demo --mode no-mistakes --best-practices obra/superpowers   # adversarial: uncarried pack
+error: --best-practices names 'obra/superpowers', which this firstmate carries no adapter for; it carries: addyosmani/agent-skills, or pass none
+(exit 1)
+
+--- Task filled with a 4-backtick fence holding a 3-backtick example and a fake practice heading, plus a tilde-fenced heading
+$ fm-best-practices.sh route <brief> --project demo   # no provider key configured
+best-practices-route: off (TYPESAFE_API_KEY absent from the environment and /var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.5p5Kow/.env)
+best-practices-route:
+  status: off
+  repository: addyosmani/agent-skills
+  reason: TYPESAFE_API_KEY absent from the environment and /var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.5p5Kow/.env
+  row: bug-fix = true (fallback)
+  row: trivial = true (fallback)
+  row: security = true (fallback)
+  row: performance = true (fallback)
+  row: api = true (fallback)
+  row: observability = true (fallback)
+  row: deprecation = true (fallback)
+  row: frontend = true (fallback)
+  row: browser = true (fallback)
+  row: ci-cd = true (fallback)
+  row: refactor = true (fallback)
+  row: source-driven = true (fallback)
+  row: source-citations = true (fallback)
+  row: risky = true (fallback)
+  row: doubt = true (fact mode=no-mistakes)
+  section: recomposed in /var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.5p5Kow/data/bp1/brief.md
+(exit 0)
+--- diff filled brief vs routed brief
+(no change outside the practice section)
+--- fenced examples still intact in Task:
+# Task
+## Captain's intent
+Fix the login form validation bug.
+
+Example from the issue:
+
+````markdown
+```
+inner
+```
+# Best practices: addyosmani/agent-skills
+FAKE SECTION INSIDE FENCE
+````
+
+~~~
+# Best practices: addyosmani/agent-skills
+~~~
+
+## Firstmate spec
+Keep the fix small.
+--- headings after route
+3:# Task
+13:# Best practices: addyosmani/agent-skills
+18:# Best practices: addyosmani/agent-skills
+24:# Herdr lifecycle declaration - NOT ENABLED
+29:# Setup
+39:# Rules
+101:# Firstmate instruction inbox
+107:# Project memory
+111:# Definition of done
+153:# Best practices: addyosmani/agent-skills

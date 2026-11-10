@@ -1,0 +1,5 @@
+$ fm-best-practices.sh adapters
+addyosmani/agent-skills
+$ fm-best-practices.sh manifest-check
+manifest-check: ok
+(exit 0)
