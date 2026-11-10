@@ -1,0 +1,18 @@
+=== intake, no provider: captain words in code, otherwise fallback
+best-practices-intake: off (TYPESAFE_API_KEY absent from the environment and /var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.7LuMMK/.env)
+best-practices-intake:
+  status: off
+  repository: addyosmani/agent-skills
+  reason: TYPESAFE_API_KEY absent from the environment and /var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.7LuMMK/.env
+  row: tier = tier-2 (fallback)
+  row: idea = true (words "ideate")
+  reference: /Users/ahcarpenter/.no-mistakes/worktrees/4d12af90a03c/01M71FSAV3ZVPD2YRM7GWPV5NG/.agents/skills/best-practices-adapters/references/addyosmani/agent-skills/intake-question.md
+exit=0
+
+=== fm-dispatch-resolve.sh (merge-resolved, now on the shared provider lib), no provider
+dispatch-resolve: off (TYPESAFE_API_KEY absent from the environment and /var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.7LuMMK/.env)
+exit=0
+
+=== fm-dispatch-resolve.sh --supports-credential-source macos-keychain
+supported
+exit=0

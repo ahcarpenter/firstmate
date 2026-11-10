@@ -1,0 +1,12 @@
+$ fm-project-mode.sh --best-practices demo
+addyosmani/agent-skills
+exit=0
+$ fm-project-mode.sh demo
+no-mistakes off
+exit=0
+$ (registry names an uncarried pack) fm-project-mode.sh --best-practices demo
+refused: unknown best-practices pack "obra/superpowers" registered for demo in /var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.7LuMMK/data/projects.md; this firstmate carries adapters for: addyosmani/agent-skills; correct the registry entry or drop the token
+exit=3
+$ (no token) fm-project-mode.sh --best-practices other
+none
+exit=0

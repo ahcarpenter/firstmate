@@ -1,15 +1,21 @@
-1..13
+1..18
 ok - fm-project-mode: best-practices= is one order-independent pack per project, refused unless carried, and changes no other output
-ok - manifest-check: refuses anything outside the eleven positions, a moved start or report, a replace at either, launch switches, untagged versions, unread proofs, routing drift, and fingerprints that do not cover exactly the named skills and supported tags
+ok - manifest-check: refuses anything outside the eleven positions, a moved start or report, a replace or pair at any of the five extend-only facets, deliver before verify, a moved firstmate position, launch switches, untagged versions, unread proofs, routing drift, and fingerprints that do not cover exactly the named skills and supported tags
 ok - claude read: ties the install through its marketplace, counts user and this project's scope, reads committed settings over user settings, never writes
 ok - claude read: the tie is the repository the marketplace resolves to, by github repo, git url, or relative path, never the plugin name or a look-alike host
 ok - codex read: installed needs the plugin's table and its cached copy; its own enabled beats _default, which beats Codex's default of enabled
 ok - omp read: an enabled committed project install shadows the user install, and an entry recording enabled false is skipped
 ok - agy and skills-directory reads follow their own records and switches, and unproven or unsupported runtimes are named, never claimed
 ok - fingerprints: generated from a tag with line endings normalized, a copy reads as the reviewed tag its content matches whatever its label, an edit or a missing skill is unreviewed and named, and an empty copy is missing
+ok - read: settings, registries, switches, and skills come from the checkout given, and the clone only identifies a project-scope install
 ok - propose: only a pack enabled by what the project itself commits is proposed
 ok - fm-brief: the pack rides the contract line and its practice section lands last, ranked below every other section
 ok - route: one request through the resolver's provider code narrows only on confidence, reads facts and words in code, and falls back on no key, never-send, or error
+ok - route: a declared credential source supplies the key on fd 3, an unavailable one is an error that keeps the fallback, and a malformed declaration exits 2
+ok - route: the rewrite follows the brief reader's fence rules, so examples never hide, replace, or cut the real section
 ok - intake: the tier is one Choice with a none option, the captain's words win, and anything short of confidence keeps one question
+ok - routing: a row's own floor thresholds a noul on both sides and a choice on each option's probability, a clearing runner-up is taken, and no clearing option or a runner-up tie keeps the fallback
 ok - fm-spawn: the brief must carry the registered pack, the launch exports it with unreviewed or missing as the read finds it, and each launches with one notice
+ok - fm-spawn: the pack read sees the worker copy at its launch commit, not the clone
 FM_TEST_COMPLETE
+bash tests/fm-best-practices.test.sh  29.50s user 37.69s system 79% cpu 1:24.83 total

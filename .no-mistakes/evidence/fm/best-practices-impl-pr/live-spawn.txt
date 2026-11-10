@@ -1,0 +1,27 @@
+### fm-spawn transcript (lab home, private tmux socket fm-lab)
+$ fm-spawn.sh bp-none (brief omits the registered pack)
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /private/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T/fm-lab.7LuMMK
+error: best-practices mismatch for bp-none: demo is registered best-practices=addyosmani/agent-skills but /private/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T/fm-lab.7LuMMK/data/bp-none/brief.md records best-practices=none; keep the filled ## Captain's intent and ## Firstmate spec bodies, remove the brief, re-scaffold it with fm-brief.sh bp-none demo --mode local-only --best-practices addyosmani/agent-skills (plus this task's other flags), then re-fill those two subsections
+exit=1
+
+$ fm-spawn.sh bp-live (brief carries the registered pack)
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /private/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T/fm-lab.7LuMMK
+notice: bp-live launches with FM_BEST_PRACTICES_VERSION=unreviewed for addyosmani/agent-skills on claude: browser-testing-with-devtools, code-review-and-quality, constraint-driven-development, doubt-driven-development, git-workflow-and-versioning, security-and-hardening, shipping-and-launch differ from the reviewed 0.6.14 text (runtime label 0.6.15); the adapter still applies and the worker names these skills in its done summary
+spawned bp-live harness=claude kind=ship mode=local-only yolo=off window=primary:fm-bp-live worktree=/Users/ahcarpenter/.treehouse/demo-469815/1/demo
+exit=0
+SPAWN-DONE
+
+### exports in the generated launch script
+export FM_BEST_PRACTICES='addyosmani/agent-skills';
+export FM_BEST_PRACTICES_VERSION='unreviewed';
+
+### environment of the launched claude worker process (FM_TASK_ID=bp-live)
+pid 31455 (claude)
+FM_TASK_ID=bp-live
+FM_BEST_PRACTICES=addyosmani/agent-skills
+FM_BEST_PRACTICES_VERSION=unreviewed
+
+### '# Pack read at launch' heading: authored brief=0 launch brief=1
+# Pack read at launch
+FM_BEST_PRACTICES_VERSION is unreviewed: browser-testing-with-devtools, code-review-and-quality, constraint-driven-development, doubt-driven-development, git-workflow-and-versioning, security-and-hardening, shipping-and-launch differ from the reviewed 0.6.14 text (runtime label 0.6.15).
+Follow the best-practices section anyway, and name these skills as unreviewed in your done summary.

@@ -1,0 +1,47 @@
+$ fm-best-practices.sh adapters
+addyosmani/agent-skills
+$ fm-best-practices.sh manifest-check
+manifest-check: ok
+exit=0
+--- settings uncommitted ---
+$ propose
+best-practices-propose:
+  project: /private/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T/fm-bp-live.xVGamJ/proj
+  propose: none
+  carried: addyosmani/agent-skills
+$ check
+best-practices-check:
+  repository: addyosmani/agent-skills
+  harness: claude
+  project: /private/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T/fm-bp-live.xVGamJ/proj
+  status: problem
+  problem: not-enabled
+  found: agent-skills@addy-agent-skills has no enabledPlugins entry in /var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T/fm-bp-live.xVGamJ/cfg/settings.json or in the project's committed .claude/settings.json
+  remedy: enable it where it is disabled: claude plugin enable agent-skills@addy-agent-skills --scope user
+exit=1
+--- settings committed ---
+$ propose
+best-practices-propose:
+  project: /private/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T/fm-bp-live.xVGamJ/proj
+  propose: best-practices=addyosmani/agent-skills (claude: agent-skills@addy-agent-skills is enabled by enabledPlugins in the project's committed .claude/settings.json)
+$ read
+{"installed":true,"enabled":true,"enabled_source":"project","label":"0.6.15","id":"agent-skills@addy-agent-skills","where":"agent-skills@addy-agent-skills is enabled by enabledPlugins in the project's committed .claude/settings.json","copy":{"dir":"/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T/fm-bp-live.xVGamJ/cfg/plugins/cache/addy-agent-skills/agent-skills/0.6.15","layout":"plugin"},"repository":"addyosmani/agent-skills","harness":"claude","supported":true,"shape":"plugin","read":"claude-plugin","proof":"proven","proof_reason":null,"supported_versions":["0.6.14"],"fingerprint":{"status":"unreviewed","tag":"0.6.14","differing":["browser-testing-with-devtools","code-review-and-quality","constraint-driven-development","doubt-driven-development","git-workflow-and-versioning","security-and-hardening","shipping-and-launch"],"missing":[],"label":"0.6.15"},"version":"unreviewed","version_supported":false}
+$ check
+best-practices-check:
+  repository: addyosmani/agent-skills
+  harness: claude
+  project: /private/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T/fm-bp-live.xVGamJ/proj
+  status: unreviewed
+  found: agent-skills@addy-agent-skills is enabled by enabledPlugins in the project's committed .claude/settings.json
+  unreviewed: browser-testing-with-devtools, code-review-and-quality, constraint-driven-development, doubt-driven-development, git-workflow-and-versioning, security-and-hardening, shipping-and-launch differ from the reviewed 0.6.14 text (runtime label 0.6.15)
+  supported: 0.6.14
+exit=0
+$ version
+unreviewed: browser-testing-with-devtools, code-review-and-quality, constraint-driven-development, doubt-driven-development, git-workflow-and-versioning, security-and-hardening, shipping-and-launch differ from the reviewed 0.6.14 text (runtime label 0.6.15)
+exit=0
+$ version --harness cursor
+missing: not installed; no directory this harness loads skills from holds every one of the pack's skills
+exit=0
+$ manifest-check obra/superpowers
+obra/superpowers: no manifest at /Users/ahcarpenter/.no-mistakes/worktrees/4d12af90a03c/01M71FSAV3ZVPD2YRM7GWPV5NG/.agents/skills/best-practices-adapters/references/obra/superpowers/manifest.json
+exit=1
