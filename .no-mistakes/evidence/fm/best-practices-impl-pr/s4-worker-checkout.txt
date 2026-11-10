@@ -1,0 +1,10 @@
+## S4 worker checkout differs from clone: clone main has full pack; worker branch removes shipping-and-launch
+$ version --project <clone>
+0.6.14
+$ version --project <worker worktree>
+unreviewed: shipping-and-launch is absent from the reviewed 0.6.14 text
+## S4b reverse: clone lacks the pack entirely, worker branch commits it
+$ version --project <clone>
+missing: not installed; no directory this harness loads skills from holds any of the pack's skills
+$ version --project <worker worktree>
+0.6.14

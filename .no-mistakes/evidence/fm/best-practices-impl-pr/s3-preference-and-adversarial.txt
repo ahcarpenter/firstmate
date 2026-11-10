@@ -1,0 +1,39 @@
+## S3a partial project copy + full user copy at ~/.config/opencode/skills: full copy preferred
+$ fm-best-practices.sh version addyosmani/agent-skills --harness opencode --project /tmp/fmbp.Amah/proj
+0.6.14
+[exit 0]
+{"where":"the pack's skills are in /tmp/fmbp.Amah/home/.config/opencode/skills","enabled_source":"user","fingerprint":{"status":"match","tag":"0.6.14"}}
+## S3b edited SKILL.md content -> unreviewed naming differing skill
+$ fm-best-practices.sh version addyosmani/agent-skills --harness opencode --project /tmp/fmbp.Amah/proj
+unreviewed: doubt-driven-development is absent from the reviewed 0.6.14 text
+[exit 0]
+## S3c adversarial: skills dir holding only unrelated skills -> missing
+$ fm-best-practices.sh version addyosmani/agent-skills --harness opencode --project /tmp/fmbp.Amah/proj2
+missing: not installed; no directory this harness loads skills from holds any of the pack's skills
+[exit 0]
+$ fm-best-practices.sh check addyosmani/agent-skills --harness opencode --project /tmp/fmbp.Amah/proj2
+best-practices-check:
+  repository: addyosmani/agent-skills
+  harness: opencode
+  project: /private/tmp/fmbp.Amah/proj2
+  status: problem
+  problem: not-installed
+  found: no directory this harness loads skills from holds any of the pack's skills
+  remedy: install it: copy the pack's skills/ directory into ~/.config/opencode/skills/
+[exit 1]
+$ fm-best-practices.sh propose /tmp/fmbp.Amah/proj2
+best-practices-propose:
+  project: /private/tmp/fmbp.Amah/proj2
+  propose: none
+  carried: addyosmani/agent-skills
+[exit 0]
+## S3d adversarial: uncommitted (untracked) full pack in project is not a project install
+$ fm-best-practices.sh version addyosmani/agent-skills --harness opencode --project /tmp/fmbp.Amah/proj3
+missing: not installed; no directory this harness loads skills from holds any of the pack's skills
+[exit 0]
+## S3b' all skills present, edited debugging-and-error-recovery/SKILL.md (fingerprinted) -> unreviewed naming it
+unreviewed: debugging-and-error-recovery differs from the reviewed 0.6.14 text
+[exit 0]
+## line-ending normalization: CRLF copy of the reviewed text still matches
+0.6.14
+[exit 0]

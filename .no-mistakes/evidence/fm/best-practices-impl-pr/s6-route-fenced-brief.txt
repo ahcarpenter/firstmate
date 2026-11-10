@@ -1,0 +1,64 @@
+best-practices-route: off (TYPESAFE_API_KEY absent from the environment and /tmp/fm-lab.C9JsLS/.env)
+best-practices-route:
+  status: off
+  repository: addyosmani/agent-skills
+  reason: TYPESAFE_API_KEY absent from the environment and /tmp/fm-lab.C9JsLS/.env
+  row: bug-fix = true (fallback)
+  row: trivial = true (fallback)
+  row: security = true (fallback)
+  row: performance = true (fallback)
+  row: api = true (fallback)
+  row: observability = true (fallback)
+  row: deprecation = true (fallback)
+  row: frontend = true (fallback)
+  row: browser = true (fallback)
+  row: ci-cd = true (fallback)
+  row: refactor = true (fallback)
+  row: source-driven = true (fallback)
+  row: source-citations = true (fallback)
+  row: risky = true (fallback)
+  row: doubt = true (fact mode=no-mistakes)
+  section: recomposed in /tmp/fm-lab.C9JsLS/data/bp-demo-1/brief.md
+
+## with a local keyless System One endpoint at 127.0.0.1:18765
+best-practices-route:
+  status: routed
+  repository: addyosmani/agent-skills
+  model: jev-1.13.0   latency_ms: 0   tokens: 600/40
+  row: bug-fix = true (routed p=0.97)
+  row: trivial = false (routed p=0.02)
+  row: security = false (routed p=0.03)
+  row: performance = false (routed p=0.04)
+  row: api = false (routed p=0.1)
+  row: observability = false (routed p=0.05)
+  row: deprecation = false (routed p=0.02)
+  row: frontend = true (fallback: p=0.55 is inside the 0.6 floor)
+  row: browser = false (routed p=0.02)
+  row: ci-cd = false (routed p=0.01)
+  row: refactor = false (routed p=0.05)
+  row: source-driven = false (routed p=0.03)
+  row: source-citations = false (routed p=0.03)
+  row: risky = false (routed p=0.04)
+  row: doubt = true (fact mode=no-mistakes)
+  section: recomposed in /tmp/fm-lab.C9JsLS/data/bp-demo-1/brief.md
+
+## diff before/after (all changes at line >=151, inside the real '# Best practices' section; fenced copies at lines 8 and 16 untouched)
+177d176
+< For a trivial mechanical edit, such as a rename, a typo, or a formatting sweep, the floor is the single quickest relevant check and the rest of it is skipped.
+185,189d183
+< When the task touches authentication, authorization, input handling, secrets, or another security boundary, load and follow the pack's `security-and-hardening` skill.
+< When the task is about speed, load time, or resource use, load and follow `performance-optimization`.
+< When the task designs or changes an API, a public interface, or a module boundary, load and follow `api-and-interface-design`.
+< When the task adds or changes logging, metrics, tracing, or error reporting, load and follow `observability-and-instrumentation`.
+< When the task deprecates, removes, or migrates code, data, or an interface, load and follow `deprecation-and-migration`.
+191,195d184
+< When the task needs behavior checked in a real browser, load and follow `browser-testing-with-devtools`, with `chrome-devtools-axi` as the tool.
+< When the task changes CI, build, or deployment automation, load and follow `ci-cd-and-automation`.
+< When the task itself is a refactor, load and follow `code-simplification`.
+< When the task depends on version-specific framework or library behavior, an upgrade, a migration, or a new library, load and follow `source-driven-development`.
+< Take the versions from the lockfile, and only when they are still ambiguous append a `needs-decision:` status line in place of the skill's question to the user.
+224,227d212
+< When you followed `source-driven-development`, list the sources it had you cite.
+< On a project that deploys from its default branch, a risky change, meaning irreversible blast radius, a production deploy path, a data migration, or a public API change as `doubt-driven-development` defines them, also carries `shipping-and-launch`'s two plans in short written form, in your done summary and in any PR body you write.
+< The rollout plan names the stages, what to watch at each, and when to hold.
+< The rollback plan names its trigger, its steps, and whether any database change can be reversed.

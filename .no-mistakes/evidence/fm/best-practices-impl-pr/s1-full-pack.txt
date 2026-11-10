@@ -1,0 +1,47 @@
+## S1 full committed pack (opencode)
+jq: parse error: Invalid numeric literal at line 1, column 2
+$ fm-best-practices.sh check addyosmani/agent-skills --harness opencode --project /tmp/fmbp.Amah/proj
+best-practices-check:
+  repository: addyosmani/agent-skills
+  harness: opencode
+  project: /private/tmp/fmbp.Amah/proj
+  status: ok
+  found: the pack's skills are committed in the project at .opencode/skills, version 0.6.14
+[exit 0]
+$ fm-best-practices.sh version addyosmani/agent-skills --harness opencode --project /tmp/fmbp.Amah/proj
+0.6.14
+[exit 0]
+$ fm-best-practices.sh propose /tmp/fmbp.Amah/proj
+best-practices-propose:
+  project: /private/tmp/fmbp.Amah/proj
+  propose: best-practices=addyosmani/agent-skills (opencode: the pack's skills are committed in the project at .opencode/skills)
+[exit 0]
+$ fm-best-practices.sh read addyosmani/agent-skills --harness opencode --project proj
+{
+  "installed": true,
+  "enabled": true,
+  "enabled_source": "project",
+  "label": null,
+  "id": null,
+  "where": "the pack's skills are committed in the project at .opencode/skills",
+  "copy": {
+    "git": "/private/tmp/fmbp.Amah/proj",
+    "prefix": ".opencode/skills"
+  },
+  "repository": "addyosmani/agent-skills",
+  "harness": "opencode",
+  "supported": true,
+  "shape": "skills-dir",
+  "read": "skills-dir",
+  "proof": "proven",
+  "proof_reason": null,
+  "supported_versions": [
+    "0.6.14"
+  ],
+  "fingerprint": {
+    "status": "match",
+    "tag": "0.6.14"
+  },
+  "version": "0.6.14",
+  "version_supported": true
+}

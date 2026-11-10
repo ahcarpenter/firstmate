@@ -1,0 +1,26 @@
+## Live spawn: clone at b8a0bea (no settings), origin/main at ce3f3e9 commits .claude/settings.json enabling agent-skills
+$ fm-best-practices.sh version --project <clone>  (pre-spawn)
+missing: installed but not enabled; agent-skills@addy-agent-skills has no enabledPlugins entry in .../uhome/.claude/settings.json or in the project's committed .claude/settings.json
+
+$ bin/fm-spawn.sh bp-live <clone> --mode local-only --yolo off --harness claude   (inside lab tmux socket fm-lab, FM_HOME=lab)
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /private/tmp/fm-lab.C9JsLS
+spawned bp-live harness=claude kind=ship mode=local-only yolo=off window=primary:fm-bp-live worktree=/Users/ahcarpenter/.treehouse/demo-13b60d/1/demo
+exit 0
+
+## worker worktree HEAD
+ce3f3e9 enable
+## exports in the generated launch script
+export FM_BEST_PRACTICES='addyosmani/agent-skills'
+export FM_BEST_PRACTICES_VERSION='0.6.14'
+## launch-brief has '# Pack read at launch'?
+0
+## launch-brief ends with the practice section:
+1:# Current worker role contract
+13:# Task
+20:# Herdr lifecycle declaration - NOT ENABLED
+25:# Setup
+34:# Rules
+94:# Firstmate instruction inbox
+100:# Project memory
+104:# Definition of done
+114:# Best practices: addyosmani/agent-skills
