@@ -1,0 +1,10 @@
+### brief: ship (no-mistakes) with --best-practices addyosmani/agent-skills
+scaffolded: /var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.2r4FbF/data/live1/brief.md (ship, mode=no-mistakes best-practices=addyosmani/agent-skills; replace {TASK} and {FIRSTMATE_SPEC})
+[exit 0]
+### brief: scout with pack
+scaffolded: /var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.2r4FbF/data/live2/brief.md (scout best-practices=addyosmani/agent-skills; replace {TASK} and {FIRSTMATE_SPEC})
+[exit 0]
+### brief: unknown pack refused
+error: --best-practices names 'obra/superpowers', which this firstmate carries no adapter for; it carries: addyosmani/agent-skills, or pass none
+[exit 1]
+ls: /var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.2r4FbF/data/live3: No such file or directory

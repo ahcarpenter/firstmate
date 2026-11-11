@@ -23,7 +23,7 @@ The report is the only thing that survives, so anything worth keeping must be in
 2. Stay inside this worktree; outside it, write only the report and status file below, except for the task's empty-inventory attestation through `fm-captain-hold.sh complete --none`, exactly as specified under Definition of done.
 3. Use gh-axi for GitHub operations and chrome-devtools-axi for browser operations.
 4. Report status by appending one line:
-   `echo "{state} [at=<epoch>]: {one short line}" >> '/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.7LuMMK/state/bp-scout.status' && { [ ! -e '/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.7LuMMK/config/fleet-ledger' ] || '/Users/ahcarpenter/.no-mistakes/worktrees/4d12af90a03c/01M71FSAV3ZVPD2YRM7GWPV5NG/bin/fm-fleet-ledger.sh' appended '/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.7LuMMK/config' '/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.7LuMMK/state/bp-scout.status' >/dev/null 2>&1 || true; }`
+   `echo "{state} [at=<epoch>]: {one short line}" >> '/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.2r4FbF/state/live2.status' && { [ ! -e '/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.2r4FbF/config/fleet-ledger' ] || '{run-worktree}/bin/fm-fleet-ledger.sh' appended '/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.2r4FbF/config' '/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.2r4FbF/state/live2.status' >/dev/null 2>&1 || true; }`
    States: working, needs-decision, blocked, paused, done, failed.
    Substitute `<epoch>` with the current Unix time in seconds - run `date +%s` and write the number it printed; a stamp that is not plain digits records no time at all.
    Each append wakes firstmate, so report sparingly: only phase changes a supervisor
@@ -73,18 +73,18 @@ The report is the only thing that survives, so anything worth keeping must be in
    Pass this rule to every sub-agent you launch.
 
 # Firstmate instruction inbox
-Firstmate steers you through durable message files in '/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.7LuMMK/state/bp-scout.inbox'.
-When a terminal message says an instruction is waiting there - and at any natural checkpoint when you are unsure - list them with `find '/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.7LuMMK/state/bp-scout.inbox' -maxdepth 1 -name '*.msg' 2>/dev/null | sort -V`, read the complete contents of each record (including its final line even when it is not newline-terminated) and act on each message in numeric order, then acknowledge each handled message by moving it: `mv '/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.7LuMMK/state/bp-scout.inbox'/NNN.msg '/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.7LuMMK/state/bp-scout.inbox'/handled/`.
+Firstmate steers you through durable message files in '/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.2r4FbF/state/live2.inbox'.
+When a terminal message says an instruction is waiting there - and at any natural checkpoint when you are unsure - list them with `find '/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.2r4FbF/state/live2.inbox' -maxdepth 1 -name '*.msg' 2>/dev/null | sort -V`, read the complete contents of each record (including its final line even when it is not newline-terminated) and act on each message in numeric order, then acknowledge each handled message by moving it: `mv '/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.2r4FbF/state/live2.inbox'/NNN.msg '/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.2r4FbF/state/live2.inbox'/handled/`.
 Prefer the format-aware `fm_task_inbox_body` reader from `bin/fm-task-inbox-lib.sh` when it is available. If you read manually, a header line `body-terminator=1` means the writer added exactly one synthetic final newline to terminate the record file; that marked newline is not part of the logical message body, so remove only it and preserve any intentional trailing newlines. Legacy records without that marker may end without a newline; read them through the file end.
 The move IS the acknowledgement: without it firstmate rings again and eventually treats you as stuck. An empty or absent inbox needs no action.
 
 # Definition of done
 Delivery contract: kind=scout best-practices=addyosmani/agent-skills
-Write your findings to `/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.7LuMMK/data/bp-scout/report.md`.
+Write your findings to `/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.2r4FbF/data/live2/report.md`.
 The report must stand alone: what you did, what you found, the evidence (commands run, output, file:line references), and what you recommend.
 If your deliverable is a visual artifact the captain will review and iterate on, use the lavish-axi rule: arm your board with bin/fm-procevent-lavish.sh arm <artifact.html> --for <task-id>; never run lavish-axi poll yourself. Re-arm with the reply after each nonterminal round to acknowledge it, route the board feedback through your steering inbox, write needs-decision [key=board-review] with the live board URL when the captain owes a decision, and stop at session_ended or an empty End without re-arming - acknowledge that final round with bin/fm-procevent.sh handled <source-id> <sequence> to conclude and retire your board.
-Before reporting done, read and follow `/Users/ahcarpenter/.no-mistakes/worktrees/4d12af90a03c/01M71FSAV3ZVPD2YRM7GWPV5NG/.agents/skills/captain-hold-lifecycle/SKILL.md` and pass its shared completion gate for the report and any visual review.
-Only when the reviewed inventory is empty, run `FM_HOME='/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.7LuMMK' bash '/Users/ahcarpenter/.no-mistakes/worktrees/4d12af90a03c/01M71FSAV3ZVPD2YRM7GWPV5NG/bin/fm-captain-hold.sh' complete 'bp-scout' --none`.
+Before reporting done, read and follow `{run-worktree}/.agents/skills/captain-hold-lifecycle/SKILL.md` and pass its shared completion gate for the report and any visual review.
+Only when the reviewed inventory is empty, run `FM_HOME='/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.2r4FbF' bash '{run-worktree}/bin/fm-captain-hold.sh' complete 'live2' --none`.
 This exception permits only that command, not direct metadata edits, another task, or any backlog write.
 If any captain call remains, ask firstmate to register the inventory and attest completion before you report done.
 If the command refuses, report the refusal to firstmate and stop rather than bypassing the completion gate.

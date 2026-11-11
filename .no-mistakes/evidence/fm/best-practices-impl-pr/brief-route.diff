@@ -1,0 +1,19 @@
+172d171
+< For a trivial mechanical edit, such as a rename, a typo, or a formatting sweep, the floor is the single quickest relevant check and the rest of it is skipped.
+180,184d178
+< When the task touches authentication, authorization, input handling, secrets, or another security boundary, load and follow the pack's `security-and-hardening` skill.
+< When the task is about speed, load time, or resource use, load and follow `performance-optimization`.
+< When the task designs or changes an API, a public interface, or a module boundary, load and follow `api-and-interface-design`.
+< When the task adds or changes logging, metrics, tracing, or error reporting, load and follow `observability-and-instrumentation`.
+< When the task deprecates, removes, or migrates code, data, or an interface, load and follow `deprecation-and-migration`.
+186,190d179
+< When the task needs behavior checked in a real browser, load and follow `browser-testing-with-devtools`, with `chrome-devtools-axi` as the tool.
+< When the task changes CI, build, or deployment automation, load and follow `ci-cd-and-automation`.
+< When the task itself is a refactor, load and follow `code-simplification`.
+< When the task depends on version-specific framework or library behavior, an upgrade, a migration, or a new library, load and follow `source-driven-development`.
+< Take the versions from the lockfile, and only when they are still ambiguous append a `needs-decision:` status line in place of the skill's question to the user.
+219,222d207
+< When you followed `source-driven-development`, list the sources it had you cite.
+< On a project that deploys from its default branch, a risky change, meaning irreversible blast radius, a production deploy path, a data migration, or a public API change as `doubt-driven-development` defines them, also carries `shipping-and-launch`'s two plans in short written form, in your done summary and in any PR body you write.
+< The rollout plan names the stages, what to watch at each, and when to hold.
+< The rollback plan names its trigger, its steps, and whether any database change can be reversed.

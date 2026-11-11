@@ -19,17 +19,17 @@ You are in a disposable git worktree of demo, at a detached HEAD on a clean defa
 The path check is authoritative: `git rev-parse --git-dir` and `git rev-parse --git-common-dir` can help inspect the repo, but they do not prove you are outside the primary checkout.
 If the top-level path is the primary checkout or not the worktree you were launched in, STOP - do not branch or commit here - append `blocked [at=<epoch>]: launched in primary checkout, not an isolated worktree` to the status file and stop.
 
-1. First action: create your branch: `git checkout -b fm/bp-ship --`
+1. First action: create your branch: `git checkout -b fm/live1 --`
 2. Run `no-mistakes doctor`; if it reports the repo is not initialized here, run `no-mistakes init`.
 
 # Rules
 1. Never push to the default branch. Never merge a PR.
-2. Keep project edits inside this worktree; keep proof and scratch output outside it, under `/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.7LuMMK/data/bp-ship/` or a temporary directory.
+2. Keep project edits inside this worktree; keep proof and scratch output outside it, under `/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.2r4FbF/data/live1/` or a temporary directory.
    Outside the worktree, write only that task material and the status and steering-inbox records authorized below.
    Leave the worktree clean before reporting done.
 3. Use gh-axi for GitHub operations and chrome-devtools-axi for browser operations.
 4. Report status by appending one line:
-   `echo "{state} [at=<epoch>]: {one short line}" >> '/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.7LuMMK/state/bp-ship.status' && { [ ! -e '/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.7LuMMK/config/fleet-ledger' ] || '/Users/ahcarpenter/.no-mistakes/worktrees/4d12af90a03c/01M71FSAV3ZVPD2YRM7GWPV5NG/bin/fm-fleet-ledger.sh' appended '/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.7LuMMK/config' '/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.7LuMMK/state/bp-ship.status' >/dev/null 2>&1 || true; }`
+   `echo "{state} [at=<epoch>]: {one short line}" >> '/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.2r4FbF/state/live1.status' && { [ ! -e '/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.2r4FbF/config/fleet-ledger' ] || '{run-worktree}/bin/fm-fleet-ledger.sh' appended '/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.2r4FbF/config' '/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.2r4FbF/state/live1.status' >/dev/null 2>&1 || true; }`
    States: working, needs-decision, blocked, paused, done, failed.
    Substitute `<epoch>` with the current Unix time in seconds - run `date +%s` and write the number it printed; a stamp that is not plain digits records no time at all.
    Each append wakes firstmate, so report sparingly: only phase changes a supervisor
@@ -53,8 +53,8 @@ If the top-level path is the primary checkout or not the worktree you were launc
 5. If you hit the same obstacle twice, append `blocked [at=<epoch>]: {why}` and stop; firstmate will help.
 6. If a decision belongs above the implementation worker (product choices, destructive actions),
    append `needs-decision [at=<epoch>]: {summary of options}` and stop. Firstmate will reply with the decision.
-   For a no-mistakes ask-user gate specifically, escalate all ask-user findings as one event plus one snapshot file, using that same shape even when the gate holds only a single ask-user finding: write only the ask-user findings, verbatim and unparaphrased (id, severity, file, line, description, authority), to `/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.7LuMMK/data/bp-ship/nm-<run>-findings.txt`, then report the gate with
-   `needs-decision [at=<epoch>] [key=nm-<run>-<step>]: ask-user findings=<id1>,<id2>,... file=/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.7LuMMK/data/bp-ship/nm-<run>-findings.txt`
+   For a no-mistakes ask-user gate specifically, escalate all ask-user findings as one event plus one snapshot file, using that same shape even when the gate holds only a single ask-user finding: write only the ask-user findings, verbatim and unparaphrased (id, severity, file, line, description, authority), to `/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.2r4FbF/data/live1/nm-<run>-findings.txt`, then report the gate with
+   `needs-decision [at=<epoch>] [key=nm-<run>-<step>]: ask-user findings=<id1>,<id2>,... file=/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.2r4FbF/data/live1/nm-<run>-findings.txt`
    naming every ask-user finding id from that gate. The status line only points at the file; it never restates or summarizes a finding's content.
    A decision or blocker you opened stays open until a `resolved` line carrying its exact key lands; a later `done:` or `working:` line never closes it, even when the answer is what started that work.
    Firstmate's reply normally writes that closing line at answer time; when a blocker or wait clears WITHOUT a firstmate reply, append `resolved [at=<epoch>]: {how it cleared}` yourself (same `[key=<slug>]` if you opened it with one) as you resume.
@@ -85,18 +85,18 @@ If the top-level path is the primary checkout or not the worktree you were launc
    Pass this rule to every sub-agent you launch.
 
 # Firstmate instruction inbox
-Firstmate steers you through durable message files in '/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.7LuMMK/state/bp-ship.inbox'.
-When a terminal message says an instruction is waiting there - and at any natural checkpoint when you are unsure - list them with `find '/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.7LuMMK/state/bp-ship.inbox' -maxdepth 1 -name '*.msg' 2>/dev/null | sort -V`, read the complete contents of each record (including its final line even when it is not newline-terminated) and act on each message in numeric order, then acknowledge each handled message by moving it: `mv '/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.7LuMMK/state/bp-ship.inbox'/NNN.msg '/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.7LuMMK/state/bp-ship.inbox'/handled/`.
+Firstmate steers you through durable message files in '/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.2r4FbF/state/live1.inbox'.
+When a terminal message says an instruction is waiting there - and at any natural checkpoint when you are unsure - list them with `find '/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.2r4FbF/state/live1.inbox' -maxdepth 1 -name '*.msg' 2>/dev/null | sort -V`, read the complete contents of each record (including its final line even when it is not newline-terminated) and act on each message in numeric order, then acknowledge each handled message by moving it: `mv '/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.2r4FbF/state/live1.inbox'/NNN.msg '/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.2r4FbF/state/live1.inbox'/handled/`.
 Prefer the format-aware `fm_task_inbox_body` reader from `bin/fm-task-inbox-lib.sh` when it is available. If you read manually, a header line `body-terminator=1` means the writer added exactly one synthetic final newline to terminate the record file; that marked newline is not part of the logical message body, so remove only it and preserve any intentional trailing newlines. Legacy records without that marker may end without a newline; read them through the file end.
 The move IS the acknowledgement: without it firstmate rings again and eventually treats you as stuck. An empty or absent inbox needs no action.
 
 # Project memory
 A project's `AGENTS.md` or `CLAUDE.md` is loaded into every agent session in that project, so edit it only to correct information that is factually wrong - including information your own change made wrong - and never to add knowledge because it is missing.
-A correction edits only the wrong text: do not run `/Users/ahcarpenter/.no-mistakes/worktrees/4d12af90a03c/01M71FSAV3ZVPD2YRM7GWPV5NG/bin/fm-ensure-agents-md.sh`, create either file, or add sections, headings, or pointers alongside it.
+A correction edits only the wrong text: do not run `{run-worktree}/bin/fm-ensure-agents-md.sh`, create either file, or add sections, headings, or pointers alongside it.
 
 # Definition of done
 Delivery contract: mode=no-mistakes best-practices=addyosmani/agent-skills
-Ship branch: fm/bp-ship
+Ship branch: fm/live1
 The task is complete only when committed on your branch.
 When you believe it is complete, append `done [at=<epoch>]: {summary}` to the status file and stop.
 Firstmate will then instruct you to run /no-mistakes to validate and ship a PR.

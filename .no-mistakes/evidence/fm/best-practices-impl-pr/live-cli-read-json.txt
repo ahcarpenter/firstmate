@@ -1,0 +1,63 @@
+### read --harness opencode, HOME=<h-full>
+{
+  "installed": true,
+  "enabled": true,
+  "enabled_source": "user",
+  "label": null,
+  "id": null,
+  "where": "the pack's skills are in /var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//bp-live.nKLnqD/h-full/.config/opencode/skills",
+  "copy": {
+    "dir": "/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//bp-live.nKLnqD/h-full/.config/opencode/skills",
+    "layout": "skills"
+  },
+  "repository": "addyosmani/agent-skills",
+  "harness": "opencode",
+  "supported": true,
+  "shape": "skills-dir",
+  "read": "skills-dir",
+  "proof": "proven",
+  "proof_reason": null,
+  "supported_versions": [
+    "0.6.14"
+  ],
+  "fingerprint": {
+    "status": "match",
+    "tag": "0.6.14"
+  },
+  "version": "0.6.14",
+  "version_supported": true
+}
+### read --harness opencode, HOME=<h-partial>
+{
+  "installed": true,
+  "enabled": true,
+  "enabled_source": "user",
+  "label": null,
+  "id": null,
+  "where": "the pack's skills are in /var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//bp-live.nKLnqD/h-partial/.agents/skills, without spec-driven-development",
+  "copy": {
+    "dir": "/var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//bp-live.nKLnqD/h-partial/.agents/skills",
+    "layout": "skills"
+  },
+  "repository": "addyosmani/agent-skills",
+  "harness": "opencode",
+  "supported": true,
+  "shape": "skills-dir",
+  "read": "skills-dir",
+  "proof": "proven",
+  "proof_reason": null,
+  "supported_versions": [
+    "0.6.14"
+  ],
+  "fingerprint": {
+    "status": "unreviewed",
+    "tag": "0.6.14",
+    "differing": [],
+    "missing": [
+      "spec-driven-development"
+    ],
+    "label": null
+  },
+  "version": "unreviewed",
+  "version_supported": false
+}

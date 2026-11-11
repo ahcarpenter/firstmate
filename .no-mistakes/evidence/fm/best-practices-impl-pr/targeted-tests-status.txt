@@ -1,0 +1,6 @@
+== tests/fm-best-practices.test.sh
+exit 0
+== tests/fm-dispatch-resolve.test.sh
+exit 0
+== tests/fm-brief.test.sh
+exit 0

@@ -1,0 +1,12 @@
+### fm-dispatch-resolve.sh --supports-credential-source macos-keychain
+supported
+[exit 0]
+### --supports-credential-source bogus
+unsupported
+[exit 1]
+### resolve the lab brief, Keychain source declared with no item
+dispatch-resolve: error (credential source macos-keychain declared for typesafe is unavailable; nothing sent)
+dispatch-resolve:
+  status: error
+  reason: credential source macos-keychain declared for typesafe is unavailable; nothing sent
+[exit 0]

@@ -1,9 +1,9 @@
-=== 1. no provider configured: route keeps the static fallback, no network call
-best-practices-route: off (TYPESAFE_API_KEY absent from the environment and /var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.7LuMMK/.env)
+### route with no provider configured (expect status off, static text kept)
+best-practices-route: off (TYPESAFE_API_KEY absent from the environment and /var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.2r4FbF/.env)
 best-practices-route:
   status: off
   repository: addyosmani/agent-skills
-  reason: TYPESAFE_API_KEY absent from the environment and /var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.7LuMMK/.env
+  reason: TYPESAFE_API_KEY absent from the environment and /var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.2r4FbF/.env
   row: bug-fix = true (fallback)
   row: trivial = true (fallback)
   row: security = true (fallback)
@@ -19,16 +19,15 @@ best-practices-route:
   row: source-citations = true (fallback)
   row: risky = true (fallback)
   row: doubt = true (fact mode=no-mistakes)
-  section: recomposed in /var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.7LuMMK/data/bp-ship/brief.md
-exit=0
-requests: 0
-brief unchanged: yes
+  section: recomposed in /var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.2r4FbF/data/live1/brief.md
+[exit 0]
+security-and-hardening lines after no-key route: 1
 
-=== 2. keyless systemone at a local endpoint: one request, confident answers narrow
+### route via systemone -> localhost emulator 127.0.0.1:48731
 best-practices-route:
   status: routed
   repository: addyosmani/agent-skills
-  model: local-lab   latency_ms: 0   tokens: 600/40
+  model: local-emulator   latency_ms: 0   tokens: 600/40
   row: bug-fix = true (routed p=0.97)
   row: trivial = false (routed p=0.02)
   row: security = false (routed p=0.03)
@@ -44,94 +43,8 @@ best-practices-route:
   row: source-citations = false (routed p=0.03)
   row: risky = false (routed p=0.04)
   row: doubt = true (fact mode=no-mistakes)
-  section: recomposed in /var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.7LuMMK/data/bp-ship/brief.md
-exit=0
-requests: 1
-{"path":"/v1/systemone","auth":null,"questions":["api","browser","bug-fix","ci-cd","deprecation","frontend","observability","performance","refactor","risky","security","source-citations","source-driven","trivial"],"brief_has_intent":true,"brief_has_boilerplate":false}
-outside practice section unchanged: yes
-  occurrences of Step `reproduce`           1
-  occurrences of security-and-hardening     0
-  occurrences of frontend-ui-engineering    1
-  occurrences of rollback plan names        0
-  brief lines: 215 -> 200
-
-=== 3. same answers again: idempotent
-idempotent: yes
-
-=== 4. endpoint returns HTTP 500: error outcome, full static table restored
-best-practices-route: error (http 500 after 0 ms)
-best-practices-route:
-  status: error
-  repository: addyosmani/agent-skills
-  reason: http 500 after 0 ms
-  row: bug-fix = true (fallback)
-  row: trivial = true (fallback)
-  row: security = true (fallback)
-  row: performance = true (fallback)
-  row: api = true (fallback)
-  row: observability = true (fallback)
-  row: deprecation = true (fallback)
-  row: frontend = true (fallback)
-  row: browser = true (fallback)
-  row: ci-cd = true (fallback)
-  row: refactor = true (fallback)
-  row: source-driven = true (fallback)
-  row: source-citations = true (fallback)
-  row: risky = true (fallback)
-  row: doubt = true (fact mode=no-mistakes)
-  section: recomposed in /var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.7LuMMK/data/bp-ship/brief.md
-exit=0
-  security-and-hardening occurrences: 1
-
-=== 5. never-send match: nothing sent
-best-practices-route: off (brief text matches /var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.7LuMMK/config/dispatch-never-send line 1; nothing sent)
-best-practices-route:
-  status: off
-  repository: addyosmani/agent-skills
-  reason: brief text matches /var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.7LuMMK/config/dispatch-never-send line 1; nothing sent
-  row: bug-fix = true (fallback)
-  row: trivial = true (fallback)
-  row: security = true (fallback)
-  row: performance = true (fallback)
-  row: api = true (fallback)
-  row: observability = true (fallback)
-  row: deprecation = true (fallback)
-  row: frontend = true (fallback)
-  row: browser = true (fallback)
-  row: ci-cd = true (fallback)
-  row: refactor = true (fallback)
-  row: source-driven = true (fallback)
-  row: source-citations = true (fallback)
-  row: risky = true (fallback)
-  row: doubt = true (fact mode=no-mistakes)
-  section: recomposed in /var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.7LuMMK/data/bp-ship/brief.md
-exit=0
-new requests: 0
-
-=== 6. declared credential source (real macOS security tool) naming an absent keychain item: error, nothing sent, fallback kept
-best-practices-route: error (credential source macos-keychain declared for typesafe is unavailable; nothing sent)
-best-practices-route:
-  status: error
-  repository: addyosmani/agent-skills
-  reason: credential source macos-keychain declared for typesafe is unavailable; nothing sent
-  row: bug-fix = true (fallback)
-  row: trivial = true (fallback)
-  row: security = true (fallback)
-  row: performance = true (fallback)
-  row: api = true (fallback)
-  row: observability = true (fallback)
-  row: deprecation = true (fallback)
-  row: frontend = true (fallback)
-  row: browser = true (fallback)
-  row: ci-cd = true (fallback)
-  row: refactor = true (fallback)
-  row: source-driven = true (fallback)
-  row: source-citations = true (fallback)
-  row: risky = true (fallback)
-  row: doubt = true (fact mode=no-mistakes)
-  section: recomposed in /var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.7LuMMK/data/bp-ship/brief.md
-exit=0
-
-=== 7. malformed declaration (holds a key field): configuration error, exit 2, value never printed
-error: malformed credential source declaration: /var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.7LuMMK/config/dispatch-credential-sources.json - typesafe has unknown field key (allowed: source, service, account); credential values do not belong in this file
-exit=2
+  section: recomposed in /var/folders/zs/h7fq2dhd7gb_4m_wm10hy9ch0000gn/T//fm-lab.2r4FbF/data/live1/brief.md
+[exit 0]
+security-and-hardening lines after routed: 0
+literal fenced heading copies kept (expect 2: example + real): 2
+requests received by emulator: 1
